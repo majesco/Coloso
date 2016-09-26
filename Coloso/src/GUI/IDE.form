@@ -1,0 +1,337 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<Form version="1.3" maxVersion="1.9" type="org.netbeans.modules.form.forminfo.JFrameFormInfo">
+  <NonVisualComponents>
+    <Menu class="javax.swing.JMenuBar" name="jMenuBar1">
+      <Properties>
+        <Property name="minimumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+          <Dimension value="[74, 35]"/>
+        </Property>
+        <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+          <Dimension value="[604, 35]"/>
+        </Property>
+      </Properties>
+      <SubComponents>
+        <Menu class="javax.swing.JMenu" name="newMenu">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="New"/>
+            <Property name="toolTipText" type="java.lang.String" value=""/>
+          </Properties>
+          <Events>
+            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="newMenuMouseClicked"/>
+          </Events>
+        </Menu>
+        <Menu class="javax.swing.JMenu" name="openMenu">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Open"/>
+          </Properties>
+          <Events>
+            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="openMenuMouseClicked"/>
+          </Events>
+        </Menu>
+        <Menu class="javax.swing.JMenu" name="savemenu">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Save"/>
+          </Properties>
+          <Events>
+            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="savemenuMouseClicked"/>
+          </Events>
+        </Menu>
+        <Menu class="javax.swing.JMenu" name="settingsMenu">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Settings"/>
+          </Properties>
+        </Menu>
+        <Menu class="javax.swing.JMenu" name="memoryMenu">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Memory"/>
+          </Properties>
+        </Menu>
+        <Menu class="javax.swing.JMenu" name="executeMenu">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Execute"/>
+          </Properties>
+        </Menu>
+        <Menu class="javax.swing.JMenu" name="resetMenu">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Reset"/>
+          </Properties>
+        </Menu>
+        <Menu class="javax.swing.JMenu" name="stepForwardMenu">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Step Forward"/>
+          </Properties>
+        </Menu>
+        <Menu class="javax.swing.JMenu" name="stepBackwardsMenu">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Step Backward"/>
+          </Properties>
+        </Menu>
+      </SubComponents>
+    </Menu>
+  </NonVisualComponents>
+  <Properties>
+    <Property name="defaultCloseOperation" type="int" value="3"/>
+  </Properties>
+  <SyntheticProperties>
+    <SyntheticProperty name="menuBar" type="java.lang.String" value="jMenuBar1"/>
+    <SyntheticProperty name="formSizePolicy" type="int" value="1"/>
+    <SyntheticProperty name="generateCenter" type="boolean" value="false"/>
+  </SyntheticProperties>
+  <AuxValues>
+    <AuxValue name="FormSettings_autoResourcing" type="java.lang.Integer" value="0"/>
+    <AuxValue name="FormSettings_autoSetComponentName" type="java.lang.Boolean" value="false"/>
+    <AuxValue name="FormSettings_generateFQN" type="java.lang.Boolean" value="true"/>
+    <AuxValue name="FormSettings_generateMnemonicsCode" type="java.lang.Boolean" value="false"/>
+    <AuxValue name="FormSettings_i18nAutoMode" type="java.lang.Boolean" value="false"/>
+    <AuxValue name="FormSettings_layoutCodeTarget" type="java.lang.Integer" value="1"/>
+    <AuxValue name="FormSettings_listenerGenerationStyle" type="java.lang.Integer" value="0"/>
+    <AuxValue name="FormSettings_variablesLocal" type="java.lang.Boolean" value="false"/>
+    <AuxValue name="FormSettings_variablesModifier" type="java.lang.Integer" value="2"/>
+  </AuxValues>
+
+  <Layout>
+    <DimensionLayout dim="0">
+      <Group type="103" groupAlignment="0" attributes="0">
+          <Group type="102" alignment="0" attributes="0">
+              <Component id="jScrollPane3" min="-2" pref="36" max="-2" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
+              <Component id="jScrollPane1" min="-2" pref="548" max="-2" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
+              <Component id="rightPanel" max="32767" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
+          </Group>
+      </Group>
+    </DimensionLayout>
+    <DimensionLayout dim="1">
+      <Group type="103" groupAlignment="0" attributes="0">
+          <Group type="102" attributes="0">
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" attributes="0">
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="rightPanel" max="32767" attributes="0"/>
+                  </Group>
+                  <Component id="jScrollPane1" max="32767" attributes="0"/>
+                  <Component id="jScrollPane3" alignment="1" max="32767" attributes="0"/>
+              </Group>
+              <EmptySpace max="-2" attributes="0"/>
+          </Group>
+      </Group>
+    </DimensionLayout>
+  </Layout>
+  <SubComponents>
+    <Container class="javax.swing.JScrollPane" name="jScrollPane1">
+      <AuxValues>
+        <AuxValue name="autoScrollPane" type="java.lang.Boolean" value="true"/>
+      </AuxValues>
+
+      <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
+      <SubComponents>
+        <Component class="javax.swing.JEditorPane" name="textEditor">
+          <Properties>
+            <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="0" green="0" red="0" type="rgb"/>
+            </Property>
+            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="0" green="0" red="0" type="rgb"/>
+            </Property>
+          </Properties>
+        </Component>
+      </SubComponents>
+    </Container>
+    <Container class="javax.swing.JPanel" name="rightPanel">
+
+      <Layout>
+        <DimensionLayout dim="0">
+          <Group type="103" groupAlignment="0" attributes="0">
+              <Group type="102" alignment="1" attributes="0">
+                  <Group type="103" groupAlignment="1" attributes="0">
+                      <Component id="R0label" max="32767" attributes="0"/>
+                      <Component id="R1label" alignment="1" max="32767" attributes="0"/>
+                      <Component id="R2label" alignment="1" max="32767" attributes="0"/>
+                      <Component id="R3label" alignment="1" max="32767" attributes="0"/>
+                      <Component id="R4label" alignment="1" max="32767" attributes="0"/>
+                      <Component id="R5label" alignment="1" max="32767" attributes="0"/>
+                      <Component id="R6label" alignment="1" max="32767" attributes="0"/>
+                      <Component id="R7label" alignment="1" max="32767" attributes="0"/>
+                      <Component id="R8label" alignment="1" max="32767" attributes="0"/>
+                      <Component id="R9label" alignment="1" max="32767" attributes="0"/>
+                      <Component id="R10label" alignment="1" max="32767" attributes="0"/>
+                      <Component id="R11label" alignment="1" max="32767" attributes="0"/>
+                      <Component id="SPlabel" alignment="1" max="32767" attributes="0"/>
+                      <Component id="LRlabel" alignment="1" max="32767" attributes="0"/>
+                      <Component id="PClabel" alignment="1" max="32767" attributes="0"/>
+                      <Component id="jLabel11" alignment="0" pref="130" max="32767" attributes="0"/>
+                  </Group>
+                  <EmptySpace max="-2" attributes="0"/>
+              </Group>
+          </Group>
+        </DimensionLayout>
+        <DimensionLayout dim="1">
+          <Group type="103" groupAlignment="0" attributes="0">
+              <Group type="102" alignment="0" attributes="0">
+                  <Component id="R0label" min="-2" pref="22" max="-2" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Component id="R1label" min="-2" pref="20" max="-2" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Component id="R2label" min="-2" pref="22" max="-2" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Component id="R3label" min="-2" pref="24" max="-2" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Component id="R4label" min="-2" pref="24" max="-2" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Component id="R5label" min="-2" pref="25" max="-2" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Component id="R6label" min="-2" pref="27" max="-2" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Component id="R7label" min="-2" pref="26" max="-2" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Component id="R8label" min="-2" pref="25" max="-2" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Component id="R9label" min="-2" pref="24" max="-2" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Component id="R10label" min="-2" pref="25" max="-2" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Component id="R11label" min="-2" pref="26" max="-2" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Component id="SPlabel" min="-2" pref="25" max="-2" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Component id="LRlabel" min="-2" pref="24" max="-2" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Component id="PClabel" min="-2" pref="26" max="-2" attributes="0"/>
+                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                  <Component id="jLabel11" pref="24" max="32767" attributes="0"/>
+              </Group>
+          </Group>
+        </DimensionLayout>
+      </Layout>
+      <SubComponents>
+        <Component class="javax.swing.JLabel" name="R0label">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="R0"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="R1label">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="R1"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="R2label">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="R2"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="R3label">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="R3"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="R4label">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="R4"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="R5label">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="R5"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="R6label">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="R6"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="R7label">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="R7"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="R8label">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="R8"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="R9label">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="R9"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="R10label">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="R10"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="R11label">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="R11"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="SPlabel">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="SP"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="LRlabel">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="LR"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="PClabel">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="PC"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="jLabel11">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Clock Cycles"/>
+          </Properties>
+        </Component>
+      </SubComponents>
+    </Container>
+    <Container class="javax.swing.JScrollPane" name="jScrollPane3">
+      <AuxValues>
+        <AuxValue name="autoScrollPane" type="java.lang.Boolean" value="true"/>
+      </AuxValues>
+
+      <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
+      <SubComponents>
+        <Component class="javax.swing.JList" name="jList1">
+          <Properties>
+            <Property name="model" type="javax.swing.ListModel" editor="org.netbeans.modules.form.editors2.ListModelEditor">
+              <StringArray count="25">
+                <StringItem index="0" value="1"/>
+                <StringItem index="1" value="2"/>
+                <StringItem index="2" value="3"/>
+                <StringItem index="3" value="4"/>
+                <StringItem index="4" value="5"/>
+                <StringItem index="5" value="6"/>
+                <StringItem index="6" value="7"/>
+                <StringItem index="7" value="8"/>
+                <StringItem index="8" value="9"/>
+                <StringItem index="9" value="10"/>
+                <StringItem index="10" value="11"/>
+                <StringItem index="11" value="12"/>
+                <StringItem index="12" value="13"/>
+                <StringItem index="13" value="14"/>
+                <StringItem index="14" value="15"/>
+                <StringItem index="15" value="16"/>
+                <StringItem index="16" value="17"/>
+                <StringItem index="17" value="18"/>
+                <StringItem index="18" value="19"/>
+                <StringItem index="19" value="20"/>
+                <StringItem index="20" value="21"/>
+                <StringItem index="21" value="22"/>
+                <StringItem index="22" value="23"/>
+                <StringItem index="23" value="24"/>
+                <StringItem index="24" value="25"/>
+              </StringArray>
+            </Property>
+          </Properties>
+          <AuxValues>
+            <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
+          </AuxValues>
+        </Component>
+      </SubComponents>
+    </Container>
+  </SubComponents>
+</Form>
