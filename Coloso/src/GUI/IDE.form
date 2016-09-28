@@ -51,6 +51,9 @@
           <Properties>
             <Property name="text" type="java.lang.String" value="Execute"/>
           </Properties>
+          <Events>
+            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="executeMenuMouseClicked"/>
+          </Events>
         </Menu>
         <Menu class="javax.swing.JMenu" name="resetMenu">
           <Properties>
@@ -208,77 +211,77 @@
       <SubComponents>
         <Component class="javax.swing.JLabel" name="R0label">
           <Properties>
-            <Property name="text" type="java.lang.String" value="R0"/>
+            <Property name="text" type="java.lang.String" value="R0     0x0"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="R1label">
           <Properties>
-            <Property name="text" type="java.lang.String" value="R1"/>
+            <Property name="text" type="java.lang.String" value="R1     0x0"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="R2label">
           <Properties>
-            <Property name="text" type="java.lang.String" value="R2"/>
+            <Property name="text" type="java.lang.String" value="R2     0x0"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="R3label">
           <Properties>
-            <Property name="text" type="java.lang.String" value="R3"/>
+            <Property name="text" type="java.lang.String" value="R3     0x0"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="R4label">
           <Properties>
-            <Property name="text" type="java.lang.String" value="R4"/>
+            <Property name="text" type="java.lang.String" value="R4     0x0"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="R5label">
           <Properties>
-            <Property name="text" type="java.lang.String" value="R5"/>
+            <Property name="text" type="java.lang.String" value="R5     0x0"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="R6label">
           <Properties>
-            <Property name="text" type="java.lang.String" value="R6"/>
+            <Property name="text" type="java.lang.String" value="R6     0x0"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="R7label">
           <Properties>
-            <Property name="text" type="java.lang.String" value="R7"/>
+            <Property name="text" type="java.lang.String" value="R7     0x0"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="R8label">
           <Properties>
-            <Property name="text" type="java.lang.String" value="R8"/>
+            <Property name="text" type="java.lang.String" value="R8     0x0"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="R9label">
           <Properties>
-            <Property name="text" type="java.lang.String" value="R9"/>
+            <Property name="text" type="java.lang.String" value="R9     0x0"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="R10label">
           <Properties>
-            <Property name="text" type="java.lang.String" value="R10"/>
+            <Property name="text" type="java.lang.String" value="R10   0x0"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="R11label">
           <Properties>
-            <Property name="text" type="java.lang.String" value="R11"/>
+            <Property name="text" type="java.lang.String" value="R11   0x0"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="SPlabel">
           <Properties>
-            <Property name="text" type="java.lang.String" value="SP"/>
+            <Property name="text" type="java.lang.String" value="SP     0x0     "/>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="LRlabel">
           <Properties>
-            <Property name="text" type="java.lang.String" value="LR"/>
+            <Property name="text" type="java.lang.String" value="LR     0x0"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="PClabel">
           <Properties>
-            <Property name="text" type="java.lang.String" value="PC"/>
+            <Property name="text" type="java.lang.String" value="PC     0x0"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel11">

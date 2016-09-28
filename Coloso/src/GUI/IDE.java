@@ -9,6 +9,7 @@ import java.awt.FileDialog;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
+import java.util.ArrayList;
 import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -31,8 +32,6 @@ public class IDE extends javax.swing.JFrame {
 
     }
 
-    
-    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -80,35 +79,35 @@ public class IDE extends javax.swing.JFrame {
         textEditor.setForeground(new java.awt.Color(0, 0, 0));
         jScrollPane1.setViewportView(textEditor);
 
-        R0label.setText("R0");
+        R0label.setText("R0     0x0");
 
-        R1label.setText("R1");
+        R1label.setText("R1     0x0");
 
-        R2label.setText("R2");
+        R2label.setText("R2     0x0");
 
-        R3label.setText("R3");
+        R3label.setText("R3     0x0");
 
-        R4label.setText("R4");
+        R4label.setText("R4     0x0");
 
-        R5label.setText("R5");
+        R5label.setText("R5     0x0");
 
-        R6label.setText("R6");
+        R6label.setText("R6     0x0");
 
-        R7label.setText("R7");
+        R7label.setText("R7     0x0");
 
-        R8label.setText("R8");
+        R8label.setText("R8     0x0");
 
-        R9label.setText("R9");
+        R9label.setText("R9     0x0");
 
-        R10label.setText("R10");
+        R10label.setText("R10   0x0");
 
-        R11label.setText("R11");
+        R11label.setText("R11   0x0");
 
-        SPlabel.setText("SP");
+        SPlabel.setText("SP     0x0     ");
 
-        LRlabel.setText("LR");
+        LRlabel.setText("LR     0x0");
 
-        PClabel.setText("PC");
+        PClabel.setText("PC     0x0");
 
         jLabel11.setText("Clock Cycles");
 
@@ -214,6 +213,11 @@ public class IDE extends javax.swing.JFrame {
         jMenuBar1.add(memoryMenu);
 
         executeMenu.setText("Execute");
+        executeMenu.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                executeMenuMouseClicked(evt);
+            }
+        });
         jMenuBar1.add(executeMenu);
 
         resetMenu.setText("Reset");
@@ -259,7 +263,6 @@ public class IDE extends javax.swing.JFrame {
         String text = textEditor.getText();
 
         if (!text.equals("")) {
-            System.out.println(text);
             saveFile(text);
             textEditor.setText(null);
         }
@@ -269,24 +272,25 @@ public class IDE extends javax.swing.JFrame {
 
         JFileChooser fileChooser = new JFileChooser();
         fileChooser.setCurrentDirectory(new File(System.getProperty("user.home")));
-        
+
         int result = fileChooser.showOpenDialog(this);
-       
+
         if (result == JFileChooser.APPROVE_OPTION) {
-            
-            String textToOpen = "";            
+
+            String textToOpen = "";
             File selectedFile = fileChooser.getSelectedFile();
 
-            Scanner sc = null; 
+            Scanner sc = null;
             try {
-                sc = new Scanner( selectedFile);
+                sc = new Scanner(selectedFile);
             } catch (FileNotFoundException ex) {
                 Logger.getLogger(IDE.class.getName()).log(Level.SEVERE, null, ex);
             }
             while (sc.hasNextLine()) {
                 String str = sc.nextLine();
                 textToOpen += str;
-                textToOpen += System.lineSeparator() ;
+                textToOpen += System.lineSeparator();
+                
             }
             textEditor.setText(textToOpen);
         }
@@ -297,11 +301,17 @@ public class IDE extends javax.swing.JFrame {
         String text = textEditor.getText();
 
         if (!text.equals("")) {
-            System.out.println(text);
             saveFile(text);
             textEditor.setText(null);
         }
     }//GEN-LAST:event_savemenuMouseClicked
+
+    private void executeMenuMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_executeMenuMouseClicked
+
+    String code = textEditor.getText(); 
+    
+
+    }//GEN-LAST:event_executeMenuMouseClicked
 
     private void saveFile(String text) {
 
@@ -348,6 +358,7 @@ public class IDE extends javax.swing.JFrame {
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
+            @Override
             public void run() {
 
                 new IDE().setVisible(true);
@@ -355,9 +366,12 @@ public class IDE extends javax.swing.JFrame {
         });
     }
 
-    
+    public void setRegisterLabels(ArrayList registerValues) {
 
-    
+        R0label.setText("Ro     " + (String) registerValues.get(0));
+
+    }
+
     
     private javax.swing.JMenu jMenu9;
     // Variables declaration - do not modify//GEN-BEGIN:variables
