@@ -15,7 +15,6 @@ public class InstructionMemory {
         instructions = new ArrayList();
     }
 
-    
     /**
      *  Access the instruction memory and returns the value.
      * @param address, expected in binary
