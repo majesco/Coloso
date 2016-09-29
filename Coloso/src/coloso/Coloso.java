@@ -11,7 +11,7 @@ public class Coloso {
      */
     public static void main(String[] args) {
 
-           System.out.println(binaryToDecimal("1111111111"));
+           System.out.println(binaryToDecimal("10000"));
     }
 
     private static int binaryToDecimal(String s) {
