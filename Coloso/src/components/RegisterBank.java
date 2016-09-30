@@ -14,7 +14,8 @@ public class RegisterBank {
 
     public RegisterBank() {
 
-        pc = new String();
+        pc = "0";
+        
         registers = new ArrayList();
         
         for (int i = 0; i < 16; i++) {
@@ -46,58 +47,58 @@ public class RegisterBank {
      * @param address expected in binary
      * @return register value, expected in binary
      */
-    public String readAddress(int address) {
+    public String readAddress(String address) {
 
         String value = "";
 
         switch (address) {
 
-            case 0000:
+            case "0000":
                 value = registers.get(0);
                 break;
-            case 0001:
+            case "0001":
                 value = registers.get(1);
                 break;
-            case 0010:
+            case "0010":
                 value = registers.get(2);
                 break;
-            case 0011:
+            case "0011":
                 value = registers.get(3);
                 break;
-            case 0100:
+            case "0100":
                 value = registers.get(4);
                 break;
-            case 0101:
+            case "0101":
                 value = registers.get(5);
                 break;
-            case 0110:
+            case "0110":
                 value = registers.get(6);
                 break;
-            case 0111:
+            case "0111":
                 value = registers.get(7);
                 break;
-            case 1000:
+            case "1000":
                 value = registers.get(8);
                 break;
-            case 1001:
+            case "1001":
                 value = registers.get(9);
                 break;
-            case 1010:
+            case "1010":
                 value = registers.get(10);
                 break;
-            case 1011:
+            case "1011":
                 value = registers.get(11);
                 break;
-            case 1100:
+            case "1100":
                 value = registers.get(12);
                 break;
-            case 1101:
+            case "1101":
                 value = registers.get(13);
                 break;
-            case 1110:
+            case "1110":
                 value = registers.get(14);
                 break;
-            case 1111:
+            case "1111":
                 value = registers.get(15);
 
         }
@@ -111,7 +112,7 @@ public class RegisterBank {
      * @param value expected in binary
      * @param enable writeEnable
      */
-    public void writeAddress(int address, String value, boolean enable) {
+    public void writeAddress(String address, String value, boolean enable) {
 
         if (!enable) {
             return;
@@ -119,52 +120,52 @@ public class RegisterBank {
 
         switch (address) {
 
-            case 0000:
+            case "0000":
                 registers.set(0, value);
                 break;
-            case 0001:
+            case "0001":
                 registers.set(1, value);
                 break;
-            case 0010:
+            case "0010":
                 registers.set(2, value);
                 break;
-            case 0011:
+            case "0011":
                 registers.set(3, value);
                 break;
-            case 0100:
+            case "0100":
                 registers.set(4, value);
                 break;
-            case 0101:
+            case "0101":
                 registers.set(5, value);
                 break;
-            case 0110:
+            case "0110":
                 registers.set(6, value);
                 break;
-            case 0111:
+            case "0111":
                 registers.set(7, value);
                 break;
-            case 1000:
+            case "1000":
                 registers.set(8, value);
                 break;
-            case 1001:
+            case "1001":
                 registers.set(9, value);
                 break;
-            case 1010:
+            case "1010":
                 registers.set(10, value);
                 break;
-            case 1011:
+            case "1011":
                 registers.set(11, value);
                 break;
-            case 1100:
+            case "1100":
                 registers.set(12, value);
                 break;
-            case 1101:
+            case "1101":
                 registers.set(13, value);
                 break;
-            case 1110:
+            case "1110":
                 registers.set(14, value);
                 break;
-            case 1111:
+            case "1111":
                 registers.set(15, value);
         }
     }
