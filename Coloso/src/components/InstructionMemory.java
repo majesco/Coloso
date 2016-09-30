@@ -10,6 +10,7 @@ public class InstructionMemory {
 
     private final ArrayList<String> instructions;
     private static InstructionMemory instance = null;
+    private int pointer = 0;
 
     public InstructionMemory() {
 
@@ -33,10 +34,17 @@ public class InstructionMemory {
      * @param address, expected in binary
      * @return an instruction encoded in binary
      */
-    public String readInstruction(int address) {
+    public String readInstruction(String address) {
 
         int index = binaryToDecimal(address);
         return instructions.get(index);
+    }
+    
+    
+    public void addInstruction( String instruction){
+        
+        instructions.set(pointer, instruction);
+        pointer++;
     }
 
     /**
@@ -45,10 +53,9 @@ public class InstructionMemory {
      * @param number
      * @return
      */
-    private int binaryToDecimal(int number) {
+    private int binaryToDecimal(String number) {
 
-        String s = Integer.toString(number);
-        int n = Integer.parseInt(s, 2);
+        int n = Integer.parseInt(number, 2);
         return n;
     }
 
