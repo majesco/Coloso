@@ -33,10 +33,11 @@ public class DataMemory {
      * @param address the address to read from.
      * @return
      */
-    public String readMemory(int address) {
+    public String readMemory(String address) {
 
         int index = binaryToDecimal(address);
 
+        System.out.println(dataMemory.get(index).getClass());
         return dataMemory.get(index);
 
     }
@@ -48,14 +49,13 @@ public class DataMemory {
      * @param data the data to write, expected in binary
      * @param enable boolean to enable or not enable the write.
      */
-    public void writeMemory(int address, String data, boolean enable) {
+    public void writeMemory(String address, String data, boolean enable) {
 
         if (!enable) {
             return;
         }
 
         int index = binaryToDecimal(address);
-
         dataMemory.set(index, data);
     }
 
@@ -65,10 +65,10 @@ public class DataMemory {
      * @param number
      * @return
      */
-    private int binaryToDecimal(int number) {
-
-        String s = Integer.toString(number);
-        int n = Integer.parseInt(s, 2);
+    private int binaryToDecimal(String number) {
+        
+        int n = Integer.parseInt(number, 2);
         return n;
     }
+    
 }

@@ -13,19 +13,43 @@ public class MainComponentes {
 
     public static void main(String[] args) {
 
-        RegisterBank reg1 = RegisterBank.getInstance();
-        RegisterBank reg3 = new RegisterBank();
-        RegisterBank reg2 = RegisterBank.getInstance();
-        String x = "00101";
-       reg2.writeAddress(0000, x, true);
+//        DataMemory dM1 = DataMemory.getInstance();
 //        
-        System.out.println(reg3.readAddress(0000));
-        System.out.println(reg1.readAddress(0000));
-        
-//        for(int i= 0 ; i<reg1.getRegisters().size() ; i++){
+//        DataMemory dM3 = new  DataMemory();
+//        
+//        DataMemory dM2 = DataMemory.getInstance();
+//
+//        String x = "00111";
+//       dM2.writeMemory("0100", x, true);
+////        
+//    //    System.out.println(dM3.readMemory(0100));
+//        System.out.println(dM1.readMemory("0100"));
+////
+
+//            RegisterBank reg1  = RegisterBank.getInstance();
+//            RegisterBank reg2 = RegisterBank.getInstance();
 //            
-//            System.out.println(reg1.getRegisters().get(i));
-//        }
+//            String data = "00111";
+//            
+//            reg1.writeAddress(0100, data, true);
+//            
+//            System.out.println(reg2.readAddress(0100) );
+
+            InstructionMemory iM1 = InstructionMemory.getInstance();
+            InstructionMemory iM2 = InstructionMemory.getInstance();
+            
+            String insData = "0101010";
+            String insData2 = "011111";
+            
+            iM1.addInstruction(insData);
+            iM2.addInstruction(insData2);
+            
+            System.out.println(iM2.readInstruction("00000001"));
+            
+            
+            
+        
+        
     }
 
 }
