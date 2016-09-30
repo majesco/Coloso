@@ -59,4 +59,8 @@ public class InstructionMemory {
         return n;
     }
 
+    public ArrayList<String> getInstructions() {
+        return instructions;
+    }
+    
 }
