@@ -11,6 +11,11 @@ public class Coloso {
      */
     public static void main(String[] args) {
 
+        String concat ="01011";
+        String base="000001";
+        
+        System.out.println( concat+base);
+        
     }
 
     private static int binaryToDecimal(String s) {

@@ -35,7 +35,7 @@ public class InstructionFetch implements Runnable {
         register.writePC( Integer.toBinaryString(sum) );
     }
 
-    public void start() {
+    public void start( ) {
 
         System.out.println("Starting " + threadName);
         if (t == null) {

@@ -49,6 +49,11 @@ public class MainStages {
         System.out.println("la instruccion " + instruction4);
         System.out.println(registers.readPC());
 
+        InstructionDecode iD = new InstructionDecode( instruction);
+        iD.start();
+        
+        
+        
     }
 
 }
