@@ -1,4 +1,8 @@
 # Coloso
-A computer processer simulator based on the RISK Architecture Coloso.
+A computer processer simulator based on the RISC Architecture Coloso.
 
-The CPU has a scalar- pipeline micro-architecture
+##The Coloso Architecture
+
+##The Coloso Microarchitecure 
+
+The CPU has a scalar  pipeline micro-architecture
