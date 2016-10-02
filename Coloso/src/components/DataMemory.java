@@ -20,6 +20,10 @@ public class DataMemory {
         }
     }
     
+    /**
+     * Singleton
+     * @return 
+     */
    public static DataMemory getInstance() {
       if(instance == null) {
          instance = new DataMemory();

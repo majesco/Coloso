@@ -12,6 +12,10 @@ public class InstructionMemory {
     private static InstructionMemory instance = null;
     private int pointer = 0;
 
+    /**
+     * Instancia de nueva memoria de instrucciones
+     * Setea en o mil posiciones de memoria.
+     */
     public InstructionMemory() {
 
         instructions = new ArrayList();
@@ -21,6 +25,10 @@ public class InstructionMemory {
         }
     }
 
+    /**
+     * Singleton
+     * @return 
+     */
     public static InstructionMemory getInstance() {
         if (instance == null) {
             instance = new InstructionMemory();
@@ -40,7 +48,10 @@ public class InstructionMemory {
         return instructions.get(index);
     }
     
-    
+    /**
+     * Agrega una nueva instruccion
+     * @param instruction 
+     */
     public void addInstruction( String instruction){
         
         instructions.set(pointer, instruction);
@@ -59,6 +70,11 @@ public class InstructionMemory {
         return n;
     }
 
+    /**
+     * Obtiene una instruccion
+     * para debug
+     * @return 
+     */
     public ArrayList<String> getInstructions() {
         return instructions;
     }
