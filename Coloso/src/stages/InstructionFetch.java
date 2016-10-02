@@ -18,6 +18,9 @@ public class InstructionFetch implements Runnable {
         threadName = "InstructionFetchStage";
     }
 
+    /**
+     * Logica del thread
+     */
     @Override
     public void run( ) {
 
@@ -35,6 +38,9 @@ public class InstructionFetch implements Runnable {
         register.writePC( Integer.toBinaryString(sum) );
     }
 
+    /**
+     * Punto de entrada del thread.
+     */
     public void start( ) {
 
         System.out.println("Starting " + threadName);
@@ -44,6 +50,11 @@ public class InstructionFetch implements Runnable {
         }
     }
 
+    /**
+     *  Se retorna el resultado de la instruccion (el fetch)
+     * @return
+     * @throws InterruptedException 
+     */
     public String getInstructionFetched() throws InterruptedException {
         Thread.sleep(1);
         return instructionFetched;
