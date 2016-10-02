@@ -124,6 +124,7 @@ public class RegisterBank {
                 registers.set(0, value);
                 break;
             case "0001":
+                System.out.println("entro aqui " + value);
                 registers.set(1, value);
                 break;
             case "0010":

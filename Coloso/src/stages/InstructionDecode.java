@@ -21,7 +21,7 @@ public class InstructionDecode implements Runnable {
      */
     public InstructionDecode(String instruction) {
 
-        threadName = "InstructionFetchStage";
+        threadName = "InstructionDecodeStage";
         this.instruction = instruction;
         output = new ArrayList();
 
@@ -40,11 +40,11 @@ public class InstructionDecode implements Runnable {
         String opCode = instruction.substring(0, 4);
         output.set(0, opCode);
 
-        String encode = instruction.substring(4, 7);
-        output.set(1, encode);
+        String type = instruction.substring(4, 7);
+        output.set(1, type);
 
-        String type = instruction.substring(7, 9);
-        output.set(2, type);
+        String encode = instruction.substring(7, 9);
+        output.set(2, encode);
 
         String destinationSource = instruction.substring(9, 13);
         output.set(3, destinationSource);
@@ -53,20 +53,29 @@ public class InstructionDecode implements Runnable {
         String dataSource1 = register.readAddress(source1);
         output.set(4, dataSource1);
 
+        System.out.println("encode "+encode);
+        System.out.println("type " +type);
+        System.out.println("opcode " +opCode );
+        System.out.println("destination "+destinationSource);
+        System.out.println("source1 "+dataSource1);
+        
         if (encode.equals("00")) {
 
-            String source2 = instruction.substring(17, 20);
+            String source2 = instruction.substring(17, 21);
+            System.out.println("source2Dir "+source2);
             String dataSource2 = register.readAddress(source2);
+            System.out.println("source2 "+ dataSource2);
             output.set(5, dataSource2);
 
         } else {
 
-            String immediate = instruction.substring(17, 33);
-            String dataImmediate = register.readAddress(immediate);
+            String immediate = instruction.substring(17, 32);
+            System.out.println( "immediate "+immediate);
             
-            String extended = "00000000000000000"+dataImmediate;
+            String extended = "00000000000000000"+immediate;
+            System.out.println(extended.length());
             
-            output.set(3, extended);
+            output.set(5, extended);
         }
 
     }
@@ -80,7 +89,9 @@ public class InstructionDecode implements Runnable {
         }
     }
 
-    public ArrayList<String> getOutput() {
+    public ArrayList<String> getOutput() throws InterruptedException {
+        
+        Thread.sleep(10);
         return output;
     }
 
