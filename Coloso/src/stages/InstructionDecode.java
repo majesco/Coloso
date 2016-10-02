@@ -16,7 +16,7 @@ public class InstructionDecode implements Runnable {
     private final ArrayList<String> output;
 
     /**
-     *
+     *  Constructor, se setea una lista para salida de 6 campos
      * @param instruction
      */
     public InstructionDecode(String instruction) {
@@ -32,6 +32,10 @@ public class InstructionDecode implements Runnable {
 
     }
 
+    /**
+     * Metodo de thread, aqui se toman los valores de la instruccion
+     * y se toman valores dependiendo del tipo de instruccion
+     */
     @Override
     public void run() {
 
@@ -80,6 +84,9 @@ public class InstructionDecode implements Runnable {
 
     }
 
+    /**
+     * Punto de entrada del thread
+     */
     public void start() {
 
         System.out.println("Starting " + threadName);
@@ -89,6 +96,11 @@ public class InstructionDecode implements Runnable {
         }
     }
 
+    /**
+     * Obtiene el valor del output de esta etapa
+     * @return
+     * @throws InterruptedException 
+     */
     public ArrayList<String> getOutput() throws InterruptedException {
         
         Thread.sleep(10);

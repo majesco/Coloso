@@ -16,7 +16,7 @@ public class MemoryStage implements Runnable {
     private ArrayList<String> output;
 
     /**
-     *
+     *  Constructor, se espera una lista con datos
      * @param dataIn
      */
     public MemoryStage(ArrayList<String> dataIn) {
@@ -27,6 +27,10 @@ public class MemoryStage implements Runnable {
 
     }
 
+    /**
+     * Logica del thread. Se obtienen los valores de entrada como opcode, type, address etc...
+     * Se lee de la memoria de datos y se escribe a ella dependiendo de la instruccion
+     */
     @Override
     public void run() {
 
@@ -59,6 +63,9 @@ public class MemoryStage implements Runnable {
         }
     }
 
+    /**
+     * Punto de entrada del thread
+     */
     public void start() {
 
         System.out.println("Starting " + threadName);
@@ -68,6 +75,10 @@ public class MemoryStage implements Runnable {
         }
     }
 
+    /**
+     *  Obtiene la salida de esta etapa
+     * @return @throws InterruptedException
+     */
     public ArrayList<String> getOutput() throws InterruptedException {
         Thread.sleep(100);
         return output;

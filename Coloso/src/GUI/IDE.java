@@ -14,7 +14,6 @@ import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JFileChooser;
-import javax.swing.text.Element;
 
 /**
  *
@@ -31,6 +30,8 @@ public class IDE extends javax.swing.JFrame {
         initComponents();
 
     }
+    
+
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -76,6 +77,7 @@ public class IDE extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         textEditor.setBackground(new java.awt.Color(0, 0, 0));
+        textEditor.setFont(new java.awt.Font("Lucida Grande", 0, 15)); // NOI18N
         textEditor.setForeground(new java.awt.Color(0, 0, 0));
         jScrollPane1.setViewportView(textEditor);
 
@@ -171,11 +173,13 @@ public class IDE extends javax.swing.JFrame {
                 .addComponent(jLabel11, javax.swing.GroupLayout.DEFAULT_SIZE, 24, Short.MAX_VALUE))
         );
 
+        jList1.setFont(new java.awt.Font("Lucida Grande", 1, 13)); // NOI18N
         jList1.setModel(new javax.swing.AbstractListModel<String>() {
-            String[] strings = { "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25" };
+            String[] strings = { "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24" };
             public int getSize() { return strings.length; }
             public String getElementAt(int i) { return strings[i]; }
         });
+        jList1.setAlignmentY(0.1F);
         jScrollPane3.setViewportView(jList1);
 
         jMenuBar1.setMinimumSize(new java.awt.Dimension(74, 35));
@@ -290,7 +294,7 @@ public class IDE extends javax.swing.JFrame {
                 String str = sc.nextLine();
                 textToOpen += str;
                 textToOpen += System.lineSeparator();
-                
+
             }
             textEditor.setText(textToOpen);
         }
@@ -308,8 +312,8 @@ public class IDE extends javax.swing.JFrame {
 
     private void executeMenuMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_executeMenuMouseClicked
 
-    String code = textEditor.getText(); 
-    
+        String code = textEditor.getText();
+
 
     }//GEN-LAST:event_executeMenuMouseClicked
 
@@ -372,7 +376,6 @@ public class IDE extends javax.swing.JFrame {
 
     }
 
-    
     private javax.swing.JMenu jMenu9;
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel LRlabel;

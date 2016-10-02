@@ -12,6 +12,9 @@ public class RegisterBank {
     private final ArrayList<String> registers;
     private static RegisterBank instance = null;
 
+    /**
+     * constructor, setea una lista de 16 elementos
+     */
     public RegisterBank() {
 
         pc = "0";
@@ -23,6 +26,10 @@ public class RegisterBank {
         }
     }
 
+    /**
+     * Singleton
+     * @return 
+     */
    public static RegisterBank getInstance() {
       if(instance == null) {
          instance = new RegisterBank();
@@ -167,6 +174,11 @@ public class RegisterBank {
         }
     }
 
+    /**
+     * obtiene todos los registros
+     * para depuracion
+     * @return 
+     */
     public ArrayList<String> getRegisters() {
         return registers;
     }
