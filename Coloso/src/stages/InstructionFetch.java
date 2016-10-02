@@ -23,9 +23,9 @@ public class InstructionFetch implements Runnable {
 
         RegisterBank register = RegisterBank.getInstance();
         String address = register.readPC();
-        InstructionMemory instructionsMemory = InstructionMemory.getInstance();
-
-        String instruction = instructionsMemory.readInstruction(address);
+        InstructionMemory instructionMemory = InstructionMemory.getInstance();
+        
+        String instruction = instructionMemory.readInstruction(address);
         instructionFetched = instruction;
 
         int number0 = Integer.parseInt(address, 2);

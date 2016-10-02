@@ -49,11 +49,9 @@ public class DataMemory {
      * @param data the data to write, expected in binary
      * @param enable boolean to enable or not enable the write.
      */
-    public void writeMemory(String address, String data, boolean enable) {
+    public void writeMemory(String address, String data) {
 
-        if (!enable) {
-            return;
-        }
+
 
         int index = binaryToDecimal(address);
         dataMemory.set(index, data);

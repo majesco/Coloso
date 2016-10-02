@@ -112,11 +112,8 @@ public class RegisterBank {
      * @param value expected in binary
      * @param enable writeEnable
      */
-    public void writeAddress(String address, String value, boolean enable) {
+    public void writeAddress(String address, String value) {
 
-        if (!enable) {
-            return;
-        }
 
         switch (address) {
 
@@ -124,7 +121,6 @@ public class RegisterBank {
                 registers.set(0, value);
                 break;
             case "0001":
-                System.out.println("entro aqui " + value);
                 registers.set(1, value);
                 break;
             case "0010":
