@@ -16,7 +16,8 @@ public class InstructionDecode implements Runnable {
     private final ArrayList<String> output;
 
     /**
-     *  Constructor, se setea una lista para salida de 6 campos
+     * Constructor, se setea una lista para salida de 6 campos
+     *
      * @param instruction
      */
     public InstructionDecode(String instruction) {
@@ -25,7 +26,7 @@ public class InstructionDecode implements Runnable {
         this.instruction = instruction;
         output = new ArrayList();
 
-        for (int i = 0; i < 6; i++) {
+        for (int i = 0; i < 7; i++) {
 
             output.add("0");
         }
@@ -33,8 +34,8 @@ public class InstructionDecode implements Runnable {
     }
 
     /**
-     * Metodo de thread, aqui se toman los valores de la instruccion
-     * y se toman valores dependiendo del tipo de instruccion
+     * Metodo de thread, aqui se toman los valores de la instruccion y se toman
+     * valores dependiendo del tipo de instruccion
      */
     @Override
     public void run() {
@@ -50,6 +51,26 @@ public class InstructionDecode implements Runnable {
         String encode = instruction.substring(7, 9);
         output.set(2, encode);
 
+        if (type.equals("010")) {
+
+            String source1 = instruction.substring(9, 13);
+            output.set(4, source1);
+
+            String source2 = instruction.substring(13, 17);
+            output.set(6, source2);
+
+            //      if (encode.equals("0000") || encode.equals("0001") || encode.equals("0010")) {
+            String immediate = instruction.substring(17, 32);
+            System.out.println("immediate " + immediate);
+
+            String extended = "00000000000000000" + immediate;
+            System.out.println(extended.length());
+
+            output.set(5, extended);
+
+            return;
+        }
+
         String destinationSource = instruction.substring(9, 13);
         output.set(3, destinationSource);
 
@@ -57,28 +78,28 @@ public class InstructionDecode implements Runnable {
         String dataSource1 = register.readAddress(source1);
         output.set(4, dataSource1);
 
-        System.out.println("encode "+encode);
-        System.out.println("type " +type);
-        System.out.println("opcode " +opCode );
-        System.out.println("destination "+destinationSource);
-        System.out.println("source1 "+dataSource1);
-        
+        System.out.println("encode " + encode);
+        System.out.println("type " + type);
+        System.out.println("opcode " + opCode);
+        System.out.println("destination " + destinationSource);
+        System.out.println("source1 " + dataSource1);
+
         if (encode.equals("00")) {
 
             String source2 = instruction.substring(17, 21);
-            System.out.println("source2Dir "+source2);
+            System.out.println("source2Dir " + source2);
             String dataSource2 = register.readAddress(source2);
-            System.out.println("source2 "+ dataSource2);
-            output.set(5, dataSource2);
+            System.out.println("source2 " + dataSource2);
+            output.set(6, dataSource2);
 
         } else {
 
             String immediate = instruction.substring(17, 32);
-            System.out.println( "immediate "+immediate);
-            
-            String extended = "00000000000000000"+immediate;
+            System.out.println("immediate " + immediate);
+
+            String extended = "00000000000000000" + immediate;
             System.out.println(extended.length());
-            
+
             output.set(5, extended);
         }
 
@@ -98,11 +119,12 @@ public class InstructionDecode implements Runnable {
 
     /**
      * Obtiene el valor del output de esta etapa
+     *
      * @return
-     * @throws InterruptedException 
+     * @throws InterruptedException
      */
     public ArrayList<String> getOutput() throws InterruptedException {
-        
+
         Thread.sleep(10);
         return output;
     }
