@@ -1,14 +1,16 @@
 package components;
 
 import java.util.ArrayList;
+import java.util.Observable;
+import java.util.Observer;
 
 /**
  *
  * @author nicolasjimenez
  */
-public class RegisterBank {
+public class RegisterBank extends Observable {
 
-    private  String pc;
+    private String pc;
     private final ArrayList<String> registers;
     private static RegisterBank instance = null;
 
@@ -18,9 +20,9 @@ public class RegisterBank {
     public RegisterBank() {
 
         pc = "0";
-        
+
         registers = new ArrayList();
-        
+
         for (int i = 0; i < 16; i++) {
             registers.add("0");
         }
@@ -28,26 +30,26 @@ public class RegisterBank {
 
     /**
      * Singleton
-     * @return 
+     *
+     * @return
      */
-   public static RegisterBank getInstance() {
-      if(instance == null) {
-         instance = new RegisterBank();
-      }
-      return instance;
-   }
-    
-   public String readPC (){
-       
-       return pc;
-   }
-   
-   public void writePC( String value){
-       
-       pc= value;
-   }
-   
-   
+    public static RegisterBank getInstance() {
+        if (instance == null) {
+            instance = new RegisterBank();
+        }
+        return instance;
+    }
+
+    public String readPC() {
+
+        return pc;
+    }
+
+    public void writePC(String value) {
+
+        pc = value;
+    }
+
     /**
      * Reads a specific register
      *
@@ -117,10 +119,10 @@ public class RegisterBank {
      *
      * @param address expected in binary
      * @param value expected in binary
-     * @param enable writeEnable
      */
     public void writeAddress(String address, String value) {
 
+        System.out.println("entro aqui");
 
         switch (address) {
 
@@ -172,16 +174,18 @@ public class RegisterBank {
             case "1111":
                 registers.set(15, value);
         }
+
+        setChanged();
+        notifyObservers();
     }
 
     /**
-     * obtiene todos los registros
-     * para depuracion
-     * @return 
+     * obtiene todos los registros para depuracion
+     *
+     * @return
      */
     public ArrayList<String> getRegisters() {
         return registers;
     }
-
 
 }

@@ -61,10 +61,8 @@ public class InstructionDecode implements Runnable {
 
             //      if (encode.equals("0000") || encode.equals("0001") || encode.equals("0010")) {
             String immediate = instruction.substring(17, 32);
-            System.out.println("immediate " + immediate);
 
             String extended = "00000000000000000" + immediate;
-            System.out.println(extended.length());
 
             output.set(5, extended);
 
@@ -78,27 +76,19 @@ public class InstructionDecode implements Runnable {
         String dataSource1 = register.readAddress(source1);
         output.set(4, dataSource1);
 
-        System.out.println("encode " + encode);
-        System.out.println("type " + type);
-        System.out.println("opcode " + opCode);
-        System.out.println("destination " + destinationSource);
-        System.out.println("source1 " + dataSource1);
+
 
         if (encode.equals("00")) {
 
             String source2 = instruction.substring(17, 21);
-            System.out.println("source2Dir " + source2);
             String dataSource2 = register.readAddress(source2);
-            System.out.println("source2 " + dataSource2);
             output.set(6, dataSource2);
 
         } else {
 
             String immediate = instruction.substring(17, 32);
-            System.out.println("immediate " + immediate);
 
             String extended = "00000000000000000" + immediate;
-            System.out.println(extended.length());
 
             output.set(5, extended);
         }

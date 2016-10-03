@@ -72,5 +72,10 @@ public class DataMemory {
         int n = Integer.parseInt(number, 2);
         return n;
     }
+
+    public ArrayList<String> getDataMemory() {
+        return dataMemory;
+    }
+    
     
 }

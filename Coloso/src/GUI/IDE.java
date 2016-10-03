@@ -5,33 +5,45 @@
  */
 package GUI;
 
+import components.DataMemory;
+import components.InstructionMemory;
+import components.RegisterBank;
 import java.awt.FileDialog;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
-import java.util.ArrayList;
+import java.util.Observable;
+import java.util.Observer;
 import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JFileChooser;
+import stages.MainStages;
 
 /**
  *
  * @author nicolasjimenez
  */
-public class IDE extends javax.swing.JFrame {
+public class IDE extends javax.swing.JFrame implements Observer {
+
+    RegisterBank registers = RegisterBank.getInstance();
+    DataMemory dataMem = DataMemory.getInstance();
+
+    InstructionMemory instrMem = InstructionMemory.getInstance();
 
     /**
      * Creates new form IDE
      */
     public IDE() {
+
+        registers.addObserver(this);
+        System.out.println(  registers.countObservers());
+        
         setTitle("Coloso IDE");
         setResizable(false);
         initComponents();
 
     }
-    
-
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -225,6 +237,11 @@ public class IDE extends javax.swing.JFrame {
         jMenuBar1.add(executeMenu);
 
         resetMenu.setText("Reset");
+        resetMenu.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                resetMenuMouseClicked(evt);
+            }
+        });
         jMenuBar1.add(resetMenu);
 
         stepForwardMenu.setText("Step Forward");
@@ -317,6 +334,31 @@ public class IDE extends javax.swing.JFrame {
 
     }//GEN-LAST:event_executeMenuMouseClicked
 
+    private void resetMenuMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_resetMenuMouseClicked
+
+        int length = registers.getRegisters().size();
+
+        for (int i = 0; i < length; i++) {
+
+            registers.getRegisters().set(i, "0");
+        }
+
+        int lengthMem = dataMem.getDataMemory().size();
+
+        for (int i = 0; i < lengthMem; i++) {
+
+            dataMem.getDataMemory().set(i, "0");
+        }
+
+        int lengthInst = dataMem.getDataMemory().size();
+
+        for (int i = 0; i < lengthInst; i++) {
+
+            instrMem.getInstructions().set(i, "0");
+        }
+
+    }//GEN-LAST:event_resetMenuMouseClicked
+
     private void saveFile(String text) {
 
         FileDialog fd = new FileDialog(this, "Save Your File", FileDialog.SAVE);
@@ -334,9 +376,11 @@ public class IDE extends javax.swing.JFrame {
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) {
+    public static void main(String args[]) throws InterruptedException {
 
 
+        MainStages stages = new MainStages();
+        stages.start();
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
@@ -366,14 +410,9 @@ public class IDE extends javax.swing.JFrame {
             public void run() {
 
                 new IDE().setVisible(true);
+
             }
         });
-    }
-
-    public void setRegisterLabels(ArrayList registerValues) {
-
-        R0label.setText("Ro     " + (String) registerValues.get(0));
-
     }
 
     private javax.swing.JMenu jMenu9;
@@ -410,4 +449,30 @@ public class IDE extends javax.swing.JFrame {
     private javax.swing.JMenu stepForwardMenu;
     private javax.swing.JEditorPane textEditor;
     // End of variables declaration//GEN-END:variables
+
+    @Override
+    public void update(Observable obs, Object obj) {
+
+        System.out.println("quiere cambiar");
+        if (obs == registers) {
+
+            R0label.setText(registers.getRegisters().get(0));
+            R1label.setText(registers.getRegisters().get(1));
+            R2label.setText(registers.getRegisters().get(2));
+            R3label.setText(registers.getRegisters().get(3));
+            R4label.setText(registers.getRegisters().get(4));
+            R5label.setText(registers.getRegisters().get(5));
+            R6label.setText(registers.getRegisters().get(6));
+            R7label.setText(registers.getRegisters().get(7));
+            R8label.setText(registers.getRegisters().get(8));
+            R9label.setText(registers.getRegisters().get(9));
+            R10label.setText(registers.getRegisters().get(10));
+            R11label.setText(registers.getRegisters().get(11));
+            SPlabel.setText(registers.getRegisters().get(13));
+            LRlabel.setText(registers.getRegisters().get(14));
+            PClabel.setText(registers.getRegisters().get(15));
+
+        }
+
+    }
 }
