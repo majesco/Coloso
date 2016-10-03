@@ -11,6 +11,9 @@ public class MainStages {
 
     public static void main(String[] args) throws InterruptedException {
 
+    }
+
+    public void start() throws InterruptedException {
         RegisterBank registers = RegisterBank.getInstance();
         InstructionMemory instructions = InstructionMemory.getInstance();
         instructions.addInstruction("000000000001100000001");
@@ -36,13 +39,11 @@ public class MainStages {
 
         fetch.start();
         instruction = fetch.getInstructionFetched();
-        System.out.println("instrucc " + instruction);
 
         InstructionFetch fetch2 = new InstructionFetch();
 
         fetch2.start();
         instruction2 = fetch2.getInstructionFetched();
-        System.out.println("instrucc " + instruction2);
 
         fetch3.start();
         instruction3 = fetch3.getInstructionFetched();
@@ -52,16 +53,13 @@ public class MainStages {
 
         InstructionDecode iD = new InstructionDecode(instruction2);
         iD.start();
-        System.out.println(iD.getOutput());
 
         //  InstructionDecode iD2 = new InstructionDecode(instruction1);
         //    iD2.start();
         //    System.out.println(iD.getOutput());
         //    System.out.println(iD2.getOutput());
         ArrayList<String> n = new ArrayList();
-        
-        
-        
+
         MemoryStage mem = new MemoryStage(n);
     }
 
