@@ -6,7 +6,6 @@
 package compiler;
 
 import java.util.ArrayList;
-import java.util.List;
 import java.util.StringTokenizer;
 
 /**
@@ -15,14 +14,14 @@ import java.util.StringTokenizer;
  */
 public class SplitData {
     
-    private static final String[] listAritmetic= {"ADD", "SUB, ADDUN, SUBUN, MUL"};
+    private static final String[] listAritmetic= {"ADD", "SUB", "ADDUN", "SUBUN", "MUL"};
     private static final String[] listLogic = {"AND", "OR", "NOR", "XOR"};
     private static final String[] listControl = {"BREQ", "BRGT", "BRGTEQ", "JUMP", "BRLN"};
     private static final String[] listMemory = {"STOREREG", "STOREBYTE", "STOREHALF", "LOADREG", "LOADBYTE", "LOADHALF"};
     private static final String[] listDisplacement = {"SHIFTL", "SHIFTR", "INIT"};
         
-    public static List<String> getSplitedString(String pData, String pDelimit){
-        List<String> instruction = new ArrayList<>();
+    public static ArrayList<String> getSplitedString(String pData, String pDelimit){
+        ArrayList<String> instruction = new ArrayList<>();
         StringTokenizer st = new StringTokenizer(pData, pDelimit);
         while (st.hasMoreElements()) {
             instruction.add(st.nextElement().toString());
