@@ -23,10 +23,6 @@ public class ExecutionStage implements Runnable {
         this.input = input;
         output = new ArrayList();
 
-        for (int i = 0; i < 6; i++) {
-
-            output.add("0");
-        }
     }
 
     @Override
@@ -95,15 +91,15 @@ public class ExecutionStage implements Runnable {
             }
         } else if (input.get(1).compareTo("010") == 0) {
             if (input.get(0).compareTo("0000") == 0) {
-                if(Cs.compareTo(Ct) == 0){
+                if (Cs.compareTo(Ct) == 0) {
                     value = Imm;
                 }
             } else if (input.get(0).compareTo("0001") == 0) {
-                if(binaryToInteger(Cs) > binaryToInteger(Ct)) {
+                if (binaryToInteger(Cs) > binaryToInteger(Ct)) {
                     value = Imm;
                 }
             } else if (input.get(0).compareTo("0010") == 0) {
-                if(binaryToInteger(Cs) >= binaryToInteger(Ct)){
+                if (binaryToInteger(Cs) >= binaryToInteger(Ct)) {
                     value = Imm;
                 }
             } else if (input.get(0).compareTo("0011") == 0) {
@@ -133,7 +129,6 @@ public class ExecutionStage implements Runnable {
 
     public void start() {
 
-        System.out.println("Starting " + threadName);
         if (t == null) {
             t = new Thread(this, threadName);
             t.start();
@@ -143,6 +138,8 @@ public class ExecutionStage implements Runnable {
     public ArrayList<String> getOutput() throws InterruptedException {
 
         Thread.sleep(10);
+        System.out.println("output execution " + output);
+
         return output;
     }
 

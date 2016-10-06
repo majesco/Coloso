@@ -22,12 +22,12 @@ public class InstructionFetch implements Runnable {
      * Logica del thread
      */
     @Override
-    public void run( ) {
+    public void run() {
 
         RegisterBank register = RegisterBank.getInstance();
-        String address = register.readPC();
+        String address = register.readAddress("1111");
         InstructionMemory instructionMemory = InstructionMemory.getInstance();
-        
+
         String instruction = instructionMemory.readInstruction(address);
         instructionFetched = instruction;
 
@@ -35,15 +35,14 @@ public class InstructionFetch implements Runnable {
         int number1 = Integer.parseInt("1", 2);
 
         int sum = number0 + number1;
-        register.writePC( Integer.toBinaryString(sum) );
+        register.writeAddress("1111", Integer.toBinaryString(sum));
     }
 
     /**
      * Punto de entrada del thread.
      */
-    public void start( ) {
+    public void start() {
 
-        System.out.println("Starting " + threadName);
         if (t == null) {
             t = new Thread(this, threadName);
             t.start();
@@ -51,12 +50,15 @@ public class InstructionFetch implements Runnable {
     }
 
     /**
-     *  Se retorna el resultado de la instruccion (el fetch)
+     * Se retorna el resultado de la instruccion (el fetch)
+     *
      * @return
-     * @throws InterruptedException 
+     * @throws InterruptedException
      */
     public String getInstructionFetched() throws InterruptedException {
         Thread.sleep(1);
+        System.out.println("output fetch " + instructionFetched);
+
         return instructionFetched;
     }
 

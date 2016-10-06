@@ -13,10 +13,11 @@ public class MemoryStage implements Runnable {
 
     private Thread t;
     private final String threadName;
-    private ArrayList<String> output;
+    private ArrayList<String> output = new ArrayList();
 
     /**
-     *  Constructor, se espera una lista con datos
+     * Constructor, se espera una lista con datos
+     *
      * @param dataIn
      */
     public MemoryStage(ArrayList<String> dataIn) {
@@ -25,11 +26,16 @@ public class MemoryStage implements Runnable {
 
         this.dataIn = dataIn;
 
+        for (int i = 0; i < 6; i++) {
+
+            output.add("0");
+        }
     }
 
     /**
-     * Logica del thread. Se obtienen los valores de entrada como opcode, type, address etc...
-     * Se lee de la memoria de datos y se escribe a ella dependiendo de la instruccion
+     * Logica del thread. Se obtienen los valores de entrada como opcode, type,
+     * address etc... Se lee de la memoria de datos y se escribe a ella
+     * dependiendo de la instruccion
      */
     @Override
     public void run() {
@@ -40,8 +46,8 @@ public class MemoryStage implements Runnable {
         String type = dataIn.get(1);
         String encode = dataIn.get(2);
         String rDestination = dataIn.get(3);
-        String address = dataIn.get(4);
-        String data = dataIn.get(5);
+        String data = dataIn.get(4);
+        String address = dataIn.get(5);
 
         String readMemory = dataMemory.readMemory(address);
 
@@ -68,7 +74,6 @@ public class MemoryStage implements Runnable {
      */
     public void start() {
 
-        System.out.println("Starting " + threadName);
         if (t == null) {
             t = new Thread(this, threadName);
             t.start();
@@ -76,11 +81,14 @@ public class MemoryStage implements Runnable {
     }
 
     /**
-     *  Obtiene la salida de esta etapa
+     * Obtiene la salida de esta etapa
+     *
      * @return @throws InterruptedException
      */
     public ArrayList<String> getOutput() throws InterruptedException {
         Thread.sleep(100);
+                System.out.println("output memory " + output);
+
         return output;
     }
 }

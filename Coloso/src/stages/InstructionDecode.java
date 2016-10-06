@@ -41,7 +41,6 @@ public class InstructionDecode implements Runnable {
     public void run() {
 
         RegisterBank register = RegisterBank.getInstance();
-
         String opCode = instruction.substring(0, 4);
         output.set(0, opCode);
 
@@ -73,16 +72,15 @@ public class InstructionDecode implements Runnable {
         output.set(3, destinationSource);
 
         String source1 = instruction.substring(13, 17);
-        String dataSource1 = register.readAddress(source1);
-        output.set(4, dataSource1);
+   //     System.out.println("substring "+source1 );
+        output.set(4, source1);
 
 
 
         if (encode.equals("00")) {
 
             String source2 = instruction.substring(17, 21);
-            String dataSource2 = register.readAddress(source2);
-            output.set(6, dataSource2);
+            output.set(6, source2);
 
         } else {
 
@@ -100,7 +98,6 @@ public class InstructionDecode implements Runnable {
      */
     public void start() {
 
-        System.out.println("Starting " + threadName);
         if (t == null) {
             t = new Thread(this, threadName);
             t.start();
@@ -116,6 +113,7 @@ public class InstructionDecode implements Runnable {
     public ArrayList<String> getOutput() throws InterruptedException {
 
         Thread.sleep(10);
+        System.out.println("output decode "+ output);
         return output;
     }
 

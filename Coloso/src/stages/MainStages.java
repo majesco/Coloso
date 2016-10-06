@@ -9,58 +9,74 @@ import java.util.ArrayList;
  */
 public class MainStages {
 
+    private final InstructionMemory instructions = InstructionMemory.getInstance();
+    private final RegisterBank registers = RegisterBank.getInstance();
+
     public static void main(String[] args) throws InterruptedException {
+
+        //  MainStages main = new MainStages();
+        //  main.start();
+    }
+
+    public void start(int cantidadInstrucciones) throws InterruptedException {
+
+        registers.writeAddress("0000", "10101001");
+                registers.writeAddress("0001", "100101010");
+
+        System.out.println("cant "+cantidadInstrucciones);
+        while( cantidadInstrucciones>0){
+            
+            String instruction =fetch();
+            ArrayList<String> decoded = decode(instruction);
+            ArrayList<String> executed = execute(decoded);
+            ArrayList<String> memory = memory(executed);
+            writeBack(memory);
+           
+            cantidadInstrucciones--;
+        }
+        
+        
+        
 
     }
 
-    public void start() throws InterruptedException {
-        RegisterBank registers = RegisterBank.getInstance();
-        InstructionMemory instructions = InstructionMemory.getInstance();
-        instructions.addInstruction("000000000001100000001");
-        instructions.addInstruction("10010000100110000000000000001000");
-        instructions.addInstruction("100011111");
+    private String fetch() throws InterruptedException {
 
-        registers.writeAddress("0000", "11111");
-        registers.writeAddress("0001", "10101");
+        InstructionFetch temp = new InstructionFetch();
 
-        registers.writeAddress("1000", "1010101010101");
-        registers.writeAddress("1010", "11110000");
+        temp.start();
+        return temp.getInstructionFetched();
+    }
 
-        String instruction;
-        String instruction2;
-        String instruction3;
+    private ArrayList<String> decode(String instruction) throws InterruptedException {
 
-        String instruction4;
-//
-        InstructionFetch fetch = new InstructionFetch();
-        InstructionFetch fetch3 = new InstructionFetch();
+        InstructionDecode temp = new InstructionDecode(instruction);
 
-        InstructionFetch fetch4 = new InstructionFetch();
+        temp.start();
+        return temp.getOutput();
+    }
 
-        fetch.start();
-        instruction = fetch.getInstructionFetched();
+    private ArrayList<String> execute(ArrayList<String> decoded) throws InterruptedException {
 
-        InstructionFetch fetch2 = new InstructionFetch();
+        ExecutionStage temp = new ExecutionStage(decoded);
 
-        fetch2.start();
-        instruction2 = fetch2.getInstructionFetched();
+        temp.start();
+        return temp.getOutput();
+    }
 
-        fetch3.start();
-        instruction3 = fetch3.getInstructionFetched();
+    private ArrayList<String> memory(ArrayList<String> exceuted) throws InterruptedException {
 
-        fetch4.start();
-        instruction4 = fetch4.getInstructionFetched();
+        MemoryStage temp = new MemoryStage(exceuted);
 
-        InstructionDecode iD = new InstructionDecode(instruction2);
-        iD.start();
+        temp.start();
+        return temp.getOutput();
+    }
 
-        //  InstructionDecode iD2 = new InstructionDecode(instruction1);
-        //    iD2.start();
-        //    System.out.println(iD.getOutput());
-        //    System.out.println(iD2.getOutput());
-        ArrayList<String> n = new ArrayList();
+    private void writeBack(ArrayList<String> memorized) throws InterruptedException {
 
-        MemoryStage mem = new MemoryStage(n);
+        WriteBackStage temp = new WriteBackStage(memorized);
+
+        temp.start();
     }
 
 }

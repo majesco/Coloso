@@ -19,6 +19,8 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JFileChooser;
 import stages.MainStages;
+import compiler.Compiler;
+import java.util.ArrayList;
 
 /**
  *
@@ -37,8 +39,8 @@ public class IDE extends javax.swing.JFrame implements Observer {
     public IDE() {
 
         registers.addObserver(this);
-        System.out.println(  registers.countObservers());
-        
+        System.out.println(registers.countObservers());
+
         setTitle("Coloso IDE");
         setResizable(false);
         initComponents();
@@ -93,29 +95,29 @@ public class IDE extends javax.swing.JFrame implements Observer {
         textEditor.setForeground(new java.awt.Color(0, 0, 0));
         jScrollPane1.setViewportView(textEditor);
 
-        R0label.setText("R0     0x0");
+        R0label.setText("C0     0x0");
 
-        R1label.setText("R1     0x0");
+        R1label.setText("C1     0x0");
 
-        R2label.setText("R2     0x0");
+        R2label.setText("C2     0x0");
 
-        R3label.setText("R3     0x0");
+        R3label.setText("C3     0x0");
 
-        R4label.setText("R4     0x0");
+        R4label.setText("C4     0x0");
 
-        R5label.setText("R5     0x0");
+        R5label.setText("C5     0x0");
 
-        R6label.setText("R6     0x0");
+        R6label.setText("C6     0x0");
 
-        R7label.setText("R7     0x0");
+        R7label.setText("C7     0x0");
 
-        R8label.setText("R8     0x0");
+        R8label.setText("C8     0x0");
 
-        R9label.setText("R9     0x0");
+        R9label.setText("C9     0x0");
 
-        R10label.setText("R10   0x0");
+        R10label.setText("C10   0x0");
 
-        R11label.setText("R11   0x0");
+        R11label.setText("C11   0x0");
 
         SPlabel.setText("SP     0x0     ");
 
@@ -329,19 +331,62 @@ public class IDE extends javax.swing.JFrame implements Observer {
 
     private void executeMenuMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_executeMenuMouseClicked
 
+        InstructionMemory instructionMemory = InstructionMemory.getInstance();
+        RegisterBank registers = RegisterBank.getInstance();
+        //    registers.writePC("10101010101010");
         String code = textEditor.getText();
+        resetFunction(false);
 
+        if (code.equals("")) {
+            return;
+        }
 
+        Compiler compiler = new Compiler(code);
+
+        ArrayList<String> instructions = compiler.compile();
+
+        int cantidadInstruciones = 0;
+        for (String instruction : instructions) {
+            cantidadInstruciones++;
+            System.out.println("SALIDA COMPILADOR " + instruction);
+            instructionMemory.addInstruction(instruction);
+        }
+        System.out.println("puntero " + instructionMemory.getPointer());
+
+        MainStages instructionExecution = new MainStages();
+
+        try {
+            instructionExecution.start(cantidadInstruciones);
+        } catch (InterruptedException ex) {
+            Logger.getLogger(IDE.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_executeMenuMouseClicked
 
     private void resetMenuMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_resetMenuMouseClicked
 
+        resetFunction( true);
+    }//GEN-LAST:event_resetMenuMouseClicked
+
+    private void resetFunction( boolean wipe) {
+
         int length = registers.getRegisters().size();
 
-        for (int i = 0; i < length; i++) {
-
-            registers.getRegisters().set(i, "0");
-        }
+        registers.writeAddress("0000", "0");
+        registers.writeAddress("0001", "0");
+        registers.writeAddress("0010", "0");
+        registers.writeAddress("0011", "0");
+        registers.writeAddress("0100", "0");
+        registers.writeAddress("0101", "0");
+        registers.writeAddress("0110", "0");
+        registers.writeAddress("0111", "0");
+        registers.writeAddress("1000", "0");
+        registers.writeAddress("1001", "0");
+        registers.writeAddress("1010", "0");
+        registers.writeAddress("1011", "0");
+        registers.writeAddress("1100", "0");
+        registers.writeAddress("1101", "0");
+        registers.writeAddress("1110", "0");
+        registers.writeAddress("1111", "0");
 
         int lengthMem = dataMem.getDataMemory().size();
 
@@ -356,8 +401,26 @@ public class IDE extends javax.swing.JFrame implements Observer {
 
             instrMem.getInstructions().set(i, "0");
         }
+        if (wipe)
+            textEditor.setText("");
+        instrMem.setPointer(0);
 
-    }//GEN-LAST:event_resetMenuMouseClicked
+        R0label.setText("C0  " + registers.getRegisters().get(0));
+        R1label.setText("C1  " + registers.getRegisters().get(1));
+        R2label.setText("C2  " + registers.getRegisters().get(2));
+        R3label.setText("C3  " + registers.getRegisters().get(3));
+        R4label.setText("C4  " + registers.getRegisters().get(4));
+        R5label.setText("C5  " + registers.getRegisters().get(5));
+        R6label.setText("C6  " + registers.getRegisters().get(6));
+        R7label.setText("C7  " + registers.getRegisters().get(7));
+        R8label.setText("C8  " + registers.getRegisters().get(8));
+        R9label.setText("C9  " + registers.getRegisters().get(9));
+        R10label.setText("C10  " + registers.getRegisters().get(10));
+        R11label.setText("C11  " + registers.getRegisters().get(11));
+        SPlabel.setText("SP   " + registers.getRegisters().get(13));
+        LRlabel.setText("LR  " + registers.getRegisters().get(14));
+        PClabel.setText("PC  " + registers.getRegisters().get(15));
+    }
 
     private void saveFile(String text) {
 
@@ -379,8 +442,6 @@ public class IDE extends javax.swing.JFrame implements Observer {
     public static void main(String args[]) throws InterruptedException {
 
 
-        MainStages stages = new MainStages();
-        stages.start();
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
@@ -453,24 +514,23 @@ public class IDE extends javax.swing.JFrame implements Observer {
     @Override
     public void update(Observable obs, Object obj) {
 
-        System.out.println("quiere cambiar");
         if (obs == registers) {
 
-            R0label.setText(registers.getRegisters().get(0));
-            R1label.setText(registers.getRegisters().get(1));
-            R2label.setText(registers.getRegisters().get(2));
-            R3label.setText(registers.getRegisters().get(3));
-            R4label.setText(registers.getRegisters().get(4));
-            R5label.setText(registers.getRegisters().get(5));
-            R6label.setText(registers.getRegisters().get(6));
-            R7label.setText(registers.getRegisters().get(7));
-            R8label.setText(registers.getRegisters().get(8));
-            R9label.setText(registers.getRegisters().get(9));
-            R10label.setText(registers.getRegisters().get(10));
-            R11label.setText(registers.getRegisters().get(11));
-            SPlabel.setText(registers.getRegisters().get(13));
-            LRlabel.setText(registers.getRegisters().get(14));
-            PClabel.setText(registers.getRegisters().get(15));
+            R0label.setText("C0  " + registers.getRegisters().get(0));
+            R1label.setText("C1  " + registers.getRegisters().get(1));
+            R2label.setText("C2  " + registers.getRegisters().get(2));
+            R3label.setText("C3  " + registers.getRegisters().get(3));
+            R4label.setText("C4  " + registers.getRegisters().get(4));
+            R5label.setText("C5  " + registers.getRegisters().get(5));
+            R6label.setText("C6  " + registers.getRegisters().get(6));
+            R7label.setText("C7  " + registers.getRegisters().get(7));
+            R8label.setText("C8  " + registers.getRegisters().get(8));
+            R9label.setText("C9  " + registers.getRegisters().get(9));
+            R10label.setText("C10  " + registers.getRegisters().get(10));
+            R11label.setText("C11  " + registers.getRegisters().get(11));
+            SPlabel.setText("SP   " + registers.getRegisters().get(13));
+            LRlabel.setText("LR  " + registers.getRegisters().get(14));
+            PClabel.setText("PC  " + registers.getRegisters().get(15));
 
         }
 

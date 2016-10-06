@@ -26,6 +26,9 @@ public class RegisterBank extends Observable {
         for (int i = 0; i < 16; i++) {
             registers.add("0");
         }
+
+        setChanged();
+        notifyObservers();
     }
 
     /**
@@ -40,15 +43,7 @@ public class RegisterBank extends Observable {
         return instance;
     }
 
-    public String readPC() {
 
-        return pc;
-    }
-
-    public void writePC(String value) {
-
-        pc = value;
-    }
 
     /**
      * Reads a specific register
@@ -121,8 +116,6 @@ public class RegisterBank extends Observable {
      * @param value expected in binary
      */
     public void writeAddress(String address, String value) {
-
-        System.out.println("entro aqui");
 
         switch (address) {
 
