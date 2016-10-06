@@ -123,7 +123,7 @@ public class ExecutionStage implements Runnable {
         this.output.add(this.input.get(1));//Type
         this.output.add(this.input.get(2));//Encode
         this.output.add(this.input.get(3));//RD address
-        this.output.add(this.input.get(5));//Memory address
+        this.output.add(this.input.get(6));//Memory address
         this.output.add(value);//Data
     }
 
