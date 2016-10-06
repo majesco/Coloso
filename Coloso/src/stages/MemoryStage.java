@@ -86,7 +86,7 @@ public class MemoryStage implements Runnable {
      * @return @throws InterruptedException
      */
     public ArrayList<String> getOutput() throws InterruptedException {
-        Thread.sleep(100);
+        Thread.sleep(10);
                 System.out.println("output memory " + output);
 
         return output;
