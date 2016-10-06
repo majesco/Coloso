@@ -22,8 +22,8 @@ public class Compiler {
         this.listInstruction = SplitData.getSplitedString(this.instructions, "\n");
     }
 
-    public List<String> compile() {
-        List<String> value = new ArrayList<>();
+    public ArrayList<String> compile() {
+        ArrayList<String> value = new ArrayList<>();
         String data = "";
         for (int i = 0; i < this.listInstruction.size(); i++) {
             String instruct = this.listInstruction.get(i);

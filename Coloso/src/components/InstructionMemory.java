@@ -79,4 +79,10 @@ public class InstructionMemory {
         return instructions;
     }
     
+    public int getPointer(){
+        return pointer;
+    }
+        public void setPointer(int value){
+         pointer=value;
+    }
 }
