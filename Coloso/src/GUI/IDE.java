@@ -328,8 +328,6 @@ public class IDE extends javax.swing.JFrame implements Observer {
 
     private void executeMenuMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_executeMenuMouseClicked
 
-        InstructionMemory instructionMemory = InstructionMemory.getInstance();
-        RegisterBank registers = RegisterBank.getInstance();
         //    registers.writePC("10101010101010");
         String code = textEditor.getText();
         resetFunction(false);
@@ -346,9 +344,9 @@ public class IDE extends javax.swing.JFrame implements Observer {
         for (String instruction : instructions) {
             cantidadInstruciones++;
             System.out.println("SALIDA COMPILADOR " + instruction);
-            instructionMemory.addInstruction(instruction);
+            instrMem.addInstruction(instruction);
         }
-        System.out.println("puntero " + instructionMemory.getPointer());
+        System.out.println("puntero " + instrMem.getPointer());
 
         MainStages instructionExecution = new MainStages();
 
@@ -361,18 +359,19 @@ public class IDE extends javax.swing.JFrame implements Observer {
 
     private void resetMenuMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_resetMenuMouseClicked
 
-        resetFunction( true);
+        resetFunction(true);
     }//GEN-LAST:event_resetMenuMouseClicked
 
     private void stepForwardMenuMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_stepForwardMenuMouseClicked
-        // TODO add your handling code here:
+
+
     }//GEN-LAST:event_stepForwardMenuMouseClicked
 
     private void stepBackwardsMenuMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_stepBackwardsMenuMouseClicked
         // TODO add your handling code here:
     }//GEN-LAST:event_stepBackwardsMenuMouseClicked
 
-    private void resetFunction( boolean wipe) {
+    private void resetFunction(boolean wipe) {
 
         int length = registers.getRegisters().size();
 
@@ -406,8 +405,9 @@ public class IDE extends javax.swing.JFrame implements Observer {
 
             instrMem.getInstructions().set(i, "0");
         }
-        if (wipe)
+        if (wipe) {
             textEditor.setText("");
+        }
         instrMem.setPointer(0);
 
         R0label.setText("C0  " + registers.getRegisters().get(0));
