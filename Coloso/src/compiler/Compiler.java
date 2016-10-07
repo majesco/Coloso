@@ -6,7 +6,6 @@
 package compiler;
 
 import java.util.ArrayList;
-import java.util.List;
 
 /**
  *
@@ -15,7 +14,7 @@ import java.util.List;
 public class Compiler {
 
     private final String instructions;
-    private final List<String> listInstruction;
+    private final ArrayList<String> listInstruction;
 
     public Compiler(String pInstruction) {
         this.instructions = pInstruction;
@@ -29,35 +28,35 @@ public class Compiler {
             String instruct = this.listInstruction.get(i);
 
             if (SplitData.containsAritmetic(instruct)) {
-                List<String> instructionString = SplitData.getSplitedString(instruct, ",! ");
+                ArrayList<String> instructionString = SplitData.getSplitedString(instruct, ",! ");
                 if (instruct.contains("!")) {
                     data = this.getOpCode(instructionString.get(0)) +"000"+"01"+this.getReg(instructionString.get(1))+this.getReg(instructionString.get(2))+this.immediateToBinary(instructionString.get(3));
                 } else {
                     data = this.getOpCode(instructionString.get(0))+"000"+"00"+this.getReg(instructionString.get(1))+this.getReg(instructionString.get(2))+this.getReg(instructionString.get(3));
                 }
             } else if (SplitData.containsLogic(instruct)) {
-                List<String> instructionString = SplitData.getSplitedString(instruct, ",! ");
+                ArrayList<String> instructionString = SplitData.getSplitedString(instruct, ",! ");
                 if (instruct.contains("!")) {
                     data = this.getOpCode(instructionString.get(0))+"001"+"01"+this.getReg(instructionString.get(1))+this.getReg(instructionString.get(2))+this.immediateToBinary(instructionString.get(3));
                 } else {
                     data = this.getOpCode(instructionString.get(0))+"001"+"00"+this.getReg(instructionString.get(1))+this.getReg(instructionString.get(2))+this.getReg(instructionString.get(3));
                 }
             } else if (SplitData.containsMemory(instruct)) {
-                List<String> instructionString = SplitData.getSplitedString(instruct, ",() ");
+                ArrayList<String> instructionString = SplitData.getSplitedString(instruct, ",() ");
                 if (SplitData.getNumberOfChar(instruct, ",") == 2) {
                     data = this.getOpCode(instructionString.get(0))+"011"+"01"+this.getReg(instructionString.get(1))+this.getReg(instructionString.get(3))+this.immediateToBinary(instructionString.get(2));
                 } else {
                     data = this.getOpCode(instructionString.get(0))+"011"+"01"+this.getReg(instructionString.get(1))+this.immediateToBinary(instructionString.get(2));
                 }
             } else if (SplitData.containsControl(instruct)) {
-                List<String> instructionString = SplitData.getSplitedString(instruct, ", ");
+                ArrayList<String> instructionString = SplitData.getSplitedString(instruct, ", ");
                 if (instruct.contains("JUMP") && instruct.contains("BRLN")) {
                     data = this.getOpCode(instructionString.get(0))+"010"+"01"+instructionString.get(1);
                 } else {
                     data = this.getOpCode(instructionString.get(0))+"010"+"01"+this.getReg(instructionString.get(1))+this.getReg(instructionString.get(2))+instructionString.get(3);
                 }
             } else if (SplitData.containsDisplacement(instruct)) {
-                List<String> instructionString = SplitData.getSplitedString(instruct, ",( )");
+                ArrayList<String> instructionString = SplitData.getSplitedString(instruct, ",( )");
                 if (instruct.contains("INIT")) {
                     data = this.getOpCode(instructionString.get(0)) +"100"+"00"+this.getReg(instructionString.get(1))+this.getReg(instructionString.get(2));
                 } else {

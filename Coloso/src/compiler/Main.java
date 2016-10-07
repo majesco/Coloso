@@ -5,6 +5,8 @@
  */
 package compiler;
 
+import java.util.ArrayList;
+
 
 /**
  *
@@ -25,15 +27,18 @@ public class Main {
 //        while (st.hasMoreElements()) {
 //            System.out.println("StringTokenizer Output: " + st.nextElement());
 //        }
-        Compiler comp = new Compiler("ADD C3, C4, !123\nLOADREG C5, (1234)\nXOR C6, C3, C4\nSHIFTL C4, 23(C4)");
-        String inst1 = comp.compile().get(0);
+        Compiler comp = new Compiler("ADD C3, C4, !123\nSUB C5, C5, C3\nADDUN C6, C3, C4\nSUBUN C4, C4, C3\nMUL C1, C4, C5");
+        ArrayList<String> instructions = comp.compile();
+        String inst1 = instructions.get(0);
         System.out.println("Instrucción #1: " + inst1);
-        String inst2 = comp.compile().get(1);
+        String inst2 = instructions.get(1);
         System.out.println("Instrucción #2: " + inst2);
-        String inst3 = comp.compile().get(2);
+        String inst3 = instructions.get(2);
         System.out.println("Instrucción #3: " + inst3);
-        String inst4 = comp.compile().get(3);
+        String inst4 = instructions.get(3);
         System.out.println("Instrucción #4: " + inst4);
+        String inst5 = instructions.get(4);
+        System.out.println("Instrucción #5: " + inst5);
     }
 
     public static int getNumber(String pText, String sTextoBuscado) {
