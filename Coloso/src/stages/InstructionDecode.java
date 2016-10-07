@@ -72,15 +72,17 @@ public class InstructionDecode implements Runnable {
         output.set(3, destinationSource);
 
         String source1 = instruction.substring(13, 17);
-   //     System.out.println("substring "+source1 );
-        output.set(4, source1);
+        System.out.println("substring "+source1 );
+        String dataSource1 = register.readAddress(source1);
+        output.set(4, completeBinary(dataSource1, 32));
 
 
 
         if (encode.equals("00")) {
 
             String source2 = instruction.substring(17, 21);
-            output.set(6, source2);
+            String dataSource2 = register.readAddress(source2);
+            output.set(6, completeBinary(dataSource2, 32));
 
         } else {
 
@@ -115,6 +117,14 @@ public class InstructionDecode implements Runnable {
         Thread.sleep(10);
         System.out.println("output decode "+ output);
         return output;
+    }
+    
+        public String completeBinary(String binary, int finalsize) {
+        String value = binary;
+        for (int i = 0; i < (finalsize - binary.length()); i++) {
+            value = "0" + value;
+        }
+        return value;
     }
 
 }
