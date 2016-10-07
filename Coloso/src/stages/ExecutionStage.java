@@ -111,9 +111,9 @@ public class ExecutionStage implements Runnable {
             value = Cs;
         } else if (input.get(1).compareTo("100") == 0) {
             if (input.get(0).compareTo("0000") == 0) {
-                this.decimalToBinary(this.binaryToInteger(Cs) << binaryToInteger(Imm));
+                value = this.decimalToBinary(this.binaryToInteger(Cs) << binaryToInteger(Imm));
             } else if (input.get(0).compareTo("0001") == 0) {
-                this.decimalToBinary(this.binaryToInteger(Cs) >> binaryToInteger(Imm));
+                value = this.decimalToBinary(this.binaryToInteger(Cs) >> binaryToInteger(Imm));
             } else if (input.get(0).compareTo("0010") == 0) {
                 value = Cs;
             }
