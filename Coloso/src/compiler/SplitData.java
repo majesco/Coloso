@@ -56,8 +56,9 @@ public class SplitData {
     public static boolean containsLogic(String pData) {
         int i = 0;
         boolean flag = false;
+        String mnemonic = getSplitedString(pData, ", !").get(0);
         while(i < listLogic.length) {
-            if(pData.contains(listLogic[i])) {
+            if(mnemonic.equals(listLogic[i])) {
                 flag = true;
                 break;
             }
