@@ -49,24 +49,26 @@ public class MemoryStage implements Runnable {
         String data = dataIn.get(4);
         String address = dataIn.get(5);
 
-        String readMemory = dataMemory.readMemory(address);
+        String readMemory = "00000000000000000000000000000000";
 
+
+        if (type.equals("011")) {
+
+            if (opcode.equals("0000") || opcode.equals("0010") || opcode.equals("0100")) {
+
+                dataMemory.writeMemory(address, data);
+            }
+            else {
+                readMemory = dataMemory.readMemory(address);
+            }
+        }
+        
         output.set(0, opcode);
         output.set(1, type);
         output.set(2, encode);
         output.set(3, rDestination);
         output.set(4, readMemory);
         output.set(5, address);
-
-        if (type.equals("011")) {
-
-            if (opcode.equals("0000") || opcode.equals("0001") || opcode.equals("0001")
-                    || opcode.equals("0100") || opcode.equals("0101") || opcode.equals("1000")
-                    || opcode.equals("10001")) {
-
-                dataMemory.writeMemory(address, data);
-            }
-        }
     }
 
     /**

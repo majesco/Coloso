@@ -40,9 +40,9 @@ public class ExecutionStage implements Runnable {
                 }
             } else if (input.get(0).compareTo("0001") == 0) {
                 if (input.get(2).compareTo("00") == 0) {
-                    value = this.decimalToBinary(this.binaryToInteger(Cs) + this.binaryToInteger(Ct));
+                    value = this.decimalToBinary(this.binaryToInteger(Cs) - this.binaryToInteger(Ct));
                 } else {
-                    value = this.decimalToBinary(this.binaryToInteger(Cs) + this.binaryToInteger(Imm));
+                    value = this.decimalToBinary(this.binaryToInteger(Cs) - this.binaryToInteger(Imm));
                 }
             } else if (input.get(0).compareTo("0010") == 0) {
                 if (input.get(2).compareTo("00") == 0) {
@@ -52,41 +52,41 @@ public class ExecutionStage implements Runnable {
                 }
             } else if (input.get(0).compareTo("0011") == 0) {
                 if (input.get(2).compareTo("00") == 0) {
-                    value = this.decimalToBinary(this.binaryToInteger(Cs) + this.binaryToInteger(Ct));
+                    value = this.decimalToBinary(this.binaryToInteger(Cs) - this.binaryToInteger(Ct));
                 } else {
-                    value = this.decimalToBinary(this.binaryToInteger(Cs) + this.binaryToInteger(Imm));
+                    value = this.decimalToBinary(this.binaryToInteger(Cs) - this.binaryToInteger(Imm));
                 }
             } else if (input.get(0).compareTo("0100") == 0) {
                 if (input.get(2).compareTo("00") == 0) {
-                    value = this.decimalToBinary(this.binaryToInteger(Cs) + this.binaryToInteger(Ct));
+                    value = this.decimalToBinary(this.binaryToInteger(Cs) * this.binaryToInteger(Ct));
                 } else {
-                    value = this.decimalToBinary(this.binaryToInteger(Cs) + this.binaryToInteger(Imm));
+                    value = this.decimalToBinary(this.binaryToInteger(Cs) * this.binaryToInteger(Imm));
                 }
             }
         } else if (input.get(1).compareTo("001") == 0) {
             if (input.get(0).compareTo("0000") == 0) {
                 if (input.get(2).compareTo("00") == 0) {
-                    value = this.decimalToBinary(this.binaryToInteger(Cs) + this.binaryToInteger(Ct));
+                    value = this.decimalToBinary(this.binaryToInteger(Cs) & this.binaryToInteger(Ct));
                 } else {
-                    value = this.decimalToBinary(this.binaryToInteger(Cs) + this.binaryToInteger(Imm));
+                    value = this.decimalToBinary(this.binaryToInteger(Cs) & this.binaryToInteger(Imm));
                 }
             } else if (input.get(0).compareTo("0001") == 0) {
                 if (input.get(2).compareTo("00") == 0) {
-                    value = this.decimalToBinary(this.binaryToInteger(Cs) + this.binaryToInteger(Ct));
+                    value = this.decimalToBinary(this.binaryToInteger(Cs) | this.binaryToInteger(Ct));
                 } else {
-                    value = this.decimalToBinary(this.binaryToInteger(Cs) + this.binaryToInteger(Imm));
+                    value = this.decimalToBinary(this.binaryToInteger(Cs) | this.binaryToInteger(Imm));
                 }
             } else if (input.get(0).compareTo("0010") == 0) {
                 if (input.get(2).compareTo("00") == 0) {
-                    value = this.decimalToBinary(this.binaryToInteger(Cs) + this.binaryToInteger(Ct));
+                    value = this.decimalToBinary(~(this.binaryToInteger(Cs) | this.binaryToInteger(Ct)));
                 } else {
-                    value = this.decimalToBinary(this.binaryToInteger(Cs) + this.binaryToInteger(Imm));
+                    value = this.decimalToBinary(~(this.binaryToInteger(Cs) | this.binaryToInteger(Imm)));
                 }
             } else if (input.get(0).compareTo("0011") == 0) {
                 if (input.get(2).compareTo("00") == 0) {
-                    value = this.decimalToBinary(this.binaryToInteger(Cs) + this.binaryToInteger(Ct));
+                    value = this.decimalToBinary(this.binaryToInteger(Cs) ^ this.binaryToInteger(Ct));
                 } else {
-                    value = this.decimalToBinary(this.binaryToInteger(Cs) + this.binaryToInteger(Imm));
+                    value = this.decimalToBinary(this.binaryToInteger(Cs) ^ this.binaryToInteger(Imm));
                 }
             }
         } else if (input.get(1).compareTo("010") == 0) {
