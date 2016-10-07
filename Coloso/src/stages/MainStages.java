@@ -20,8 +20,6 @@ public class MainStages {
 
     public void start(int cantidadInstrucciones) throws InterruptedException {
 
-        //registers.writeAddress("0000", "10101001");
-        //        registers.writeAddress("0001", "100101010");
 
         System.out.println("cant "+cantidadInstrucciones);
         while( cantidadInstrucciones>0){
@@ -35,9 +33,7 @@ public class MainStages {
             cantidadInstrucciones--;
         }
         
-        
-        
-
+   
     }
 
     private String fetch() throws InterruptedException {
