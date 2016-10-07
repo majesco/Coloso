@@ -74,15 +74,12 @@ public class IDE extends javax.swing.JFrame implements Observer {
         SPlabel = new javax.swing.JLabel();
         LRlabel = new javax.swing.JLabel();
         PClabel = new javax.swing.JLabel();
-        jLabel11 = new javax.swing.JLabel();
         jScrollPane3 = new javax.swing.JScrollPane();
         jList1 = new javax.swing.JList<>();
         jMenuBar1 = new javax.swing.JMenuBar();
         newMenu = new javax.swing.JMenu();
         openMenu = new javax.swing.JMenu();
         savemenu = new javax.swing.JMenu();
-        settingsMenu = new javax.swing.JMenu();
-        memoryMenu = new javax.swing.JMenu();
         executeMenu = new javax.swing.JMenu();
         resetMenu = new javax.swing.JMenu();
         stepForwardMenu = new javax.swing.JMenu();
@@ -95,37 +92,35 @@ public class IDE extends javax.swing.JFrame implements Observer {
         textEditor.setForeground(new java.awt.Color(0, 0, 0));
         jScrollPane1.setViewportView(textEditor);
 
-        R0label.setText("C0     0x0");
+        R0label.setText("C0     0");
 
-        R1label.setText("C1     0x0");
+        R1label.setText("C1     0");
 
-        R2label.setText("C2     0x0");
+        R2label.setText("C2     0");
 
-        R3label.setText("C3     0x0");
+        R3label.setText("C3     0");
 
-        R4label.setText("C4     0x0");
+        R4label.setText("C4     0");
 
-        R5label.setText("C5     0x0");
+        R5label.setText("C5     0");
 
-        R6label.setText("C6     0x0");
+        R6label.setText("C6     0");
 
-        R7label.setText("C7     0x0");
+        R7label.setText("C7     0");
 
-        R8label.setText("C8     0x0");
+        R8label.setText("C8     0");
 
-        R9label.setText("C9     0x0");
+        R9label.setText("C9     0");
 
-        R10label.setText("C10   0x0");
+        R10label.setText("C10   0");
 
-        R11label.setText("C11   0x0");
+        R11label.setText("C11   0");
 
-        SPlabel.setText("SP     0x0     ");
+        SPlabel.setText("SP     0     ");
 
-        LRlabel.setText("LR     0x0");
+        LRlabel.setText("LR     0");
 
-        PClabel.setText("PC     0x0");
-
-        jLabel11.setText("Clock Cycles");
+        PClabel.setText("PC     0");
 
         javax.swing.GroupLayout rightPanelLayout = new javax.swing.GroupLayout(rightPanel);
         rightPanel.setLayout(rightPanelLayout);
@@ -145,10 +140,9 @@ public class IDE extends javax.swing.JFrame implements Observer {
                     .addComponent(R9label, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(R10label, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(R11label, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(SPlabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(SPlabel, javax.swing.GroupLayout.DEFAULT_SIZE, 345, Short.MAX_VALUE)
                     .addComponent(LRlabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(PClabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel11, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 345, Short.MAX_VALUE))
+                    .addComponent(PClabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         rightPanelLayout.setVerticalGroup(
@@ -183,8 +177,7 @@ public class IDE extends javax.swing.JFrame implements Observer {
                 .addComponent(LRlabel, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(PClabel, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jLabel11, javax.swing.GroupLayout.DEFAULT_SIZE, 24, Short.MAX_VALUE))
+                .addContainerGap(42, Short.MAX_VALUE))
         );
 
         jList1.setFont(new java.awt.Font("Lucida Grande", 1, 13)); // NOI18N
@@ -224,12 +217,6 @@ public class IDE extends javax.swing.JFrame implements Observer {
         });
         jMenuBar1.add(savemenu);
 
-        settingsMenu.setText("Settings");
-        jMenuBar1.add(settingsMenu);
-
-        memoryMenu.setText("Memory");
-        jMenuBar1.add(memoryMenu);
-
         executeMenu.setText("Execute");
         executeMenu.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -247,9 +234,19 @@ public class IDE extends javax.swing.JFrame implements Observer {
         jMenuBar1.add(resetMenu);
 
         stepForwardMenu.setText("Step Forward");
+        stepForwardMenu.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                stepForwardMenuMouseClicked(evt);
+            }
+        });
         jMenuBar1.add(stepForwardMenu);
 
         stepBackwardsMenu.setText("Step Backward");
+        stepBackwardsMenu.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                stepBackwardsMenuMouseClicked(evt);
+            }
+        });
         jMenuBar1.add(stepBackwardsMenu);
 
         setJMenuBar(jMenuBar1);
@@ -366,6 +363,14 @@ public class IDE extends javax.swing.JFrame implements Observer {
 
         resetFunction( true);
     }//GEN-LAST:event_resetMenuMouseClicked
+
+    private void stepForwardMenuMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_stepForwardMenuMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_stepForwardMenuMouseClicked
+
+    private void stepBackwardsMenuMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_stepBackwardsMenuMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_stepBackwardsMenuMouseClicked
 
     private void resetFunction( boolean wipe) {
 
@@ -494,18 +499,15 @@ public class IDE extends javax.swing.JFrame implements Observer {
     private javax.swing.JLabel R9label;
     private javax.swing.JLabel SPlabel;
     private javax.swing.JMenu executeMenu;
-    private javax.swing.JLabel jLabel11;
     private javax.swing.JList<String> jList1;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane3;
-    private javax.swing.JMenu memoryMenu;
     private javax.swing.JMenu newMenu;
     private javax.swing.JMenu openMenu;
     private javax.swing.JMenu resetMenu;
     private javax.swing.JPanel rightPanel;
     private javax.swing.JMenu savemenu;
-    private javax.swing.JMenu settingsMenu;
     private javax.swing.JMenu stepBackwardsMenu;
     private javax.swing.JMenu stepForwardMenu;
     private javax.swing.JEditorPane textEditor;

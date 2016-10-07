@@ -37,16 +37,6 @@
             <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="savemenuMouseClicked"/>
           </Events>
         </Menu>
-        <Menu class="javax.swing.JMenu" name="settingsMenu">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="Settings"/>
-          </Properties>
-        </Menu>
-        <Menu class="javax.swing.JMenu" name="memoryMenu">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="Memory"/>
-          </Properties>
-        </Menu>
         <Menu class="javax.swing.JMenu" name="executeMenu">
           <Properties>
             <Property name="text" type="java.lang.String" value="Execute"/>
@@ -67,11 +57,17 @@
           <Properties>
             <Property name="text" type="java.lang.String" value="Step Forward"/>
           </Properties>
+          <Events>
+            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="stepForwardMenuMouseClicked"/>
+          </Events>
         </Menu>
         <Menu class="javax.swing.JMenu" name="stepBackwardsMenu">
           <Properties>
             <Property name="text" type="java.lang.String" value="Step Backward"/>
           </Properties>
+          <Events>
+            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="stepBackwardsMenuMouseClicked"/>
+          </Events>
         </Menu>
       </SubComponents>
     </Menu>
@@ -167,10 +163,9 @@
                       <Component id="R9label" alignment="1" max="32767" attributes="0"/>
                       <Component id="R10label" alignment="1" max="32767" attributes="0"/>
                       <Component id="R11label" alignment="1" max="32767" attributes="0"/>
-                      <Component id="SPlabel" alignment="1" max="32767" attributes="0"/>
+                      <Component id="SPlabel" alignment="1" pref="345" max="32767" attributes="0"/>
                       <Component id="LRlabel" alignment="1" max="32767" attributes="0"/>
                       <Component id="PClabel" alignment="1" max="32767" attributes="0"/>
-                      <Component id="jLabel11" alignment="0" pref="345" max="32767" attributes="0"/>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
               </Group>
@@ -208,8 +203,7 @@
                   <Component id="LRlabel" min="-2" pref="24" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="PClabel" min="-2" pref="26" max="-2" attributes="0"/>
-                  <EmptySpace type="separate" max="-2" attributes="0"/>
-                  <Component id="jLabel11" pref="24" max="32767" attributes="0"/>
+                  <EmptySpace pref="42" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -217,82 +211,77 @@
       <SubComponents>
         <Component class="javax.swing.JLabel" name="R0label">
           <Properties>
-            <Property name="text" type="java.lang.String" value="C0     0x0"/>
+            <Property name="text" type="java.lang.String" value="C0     0"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="R1label">
           <Properties>
-            <Property name="text" type="java.lang.String" value="C1     0x0"/>
+            <Property name="text" type="java.lang.String" value="C1     0"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="R2label">
           <Properties>
-            <Property name="text" type="java.lang.String" value="C2     0x0"/>
+            <Property name="text" type="java.lang.String" value="C2     0"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="R3label">
           <Properties>
-            <Property name="text" type="java.lang.String" value="C3     0x0"/>
+            <Property name="text" type="java.lang.String" value="C3     0"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="R4label">
           <Properties>
-            <Property name="text" type="java.lang.String" value="C4     0x0"/>
+            <Property name="text" type="java.lang.String" value="C4     0"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="R5label">
           <Properties>
-            <Property name="text" type="java.lang.String" value="C5     0x0"/>
+            <Property name="text" type="java.lang.String" value="C5     0"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="R6label">
           <Properties>
-            <Property name="text" type="java.lang.String" value="C6     0x0"/>
+            <Property name="text" type="java.lang.String" value="C6     0"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="R7label">
           <Properties>
-            <Property name="text" type="java.lang.String" value="C7     0x0"/>
+            <Property name="text" type="java.lang.String" value="C7     0"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="R8label">
           <Properties>
-            <Property name="text" type="java.lang.String" value="C8     0x0"/>
+            <Property name="text" type="java.lang.String" value="C8     0"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="R9label">
           <Properties>
-            <Property name="text" type="java.lang.String" value="C9     0x0"/>
+            <Property name="text" type="java.lang.String" value="C9     0"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="R10label">
           <Properties>
-            <Property name="text" type="java.lang.String" value="C10   0x0"/>
+            <Property name="text" type="java.lang.String" value="C10   0"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="R11label">
           <Properties>
-            <Property name="text" type="java.lang.String" value="C11   0x0"/>
+            <Property name="text" type="java.lang.String" value="C11   0"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="SPlabel">
           <Properties>
-            <Property name="text" type="java.lang.String" value="SP     0x0     "/>
+            <Property name="text" type="java.lang.String" value="SP     0     "/>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="LRlabel">
           <Properties>
-            <Property name="text" type="java.lang.String" value="LR     0x0"/>
+            <Property name="text" type="java.lang.String" value="LR     0"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="PClabel">
           <Properties>
-            <Property name="text" type="java.lang.String" value="PC     0x0"/>
-          </Properties>
-        </Component>
-        <Component class="javax.swing.JLabel" name="jLabel11">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="Clock Cycles"/>
+            <Property name="text" type="java.lang.String" value="PC     0"/>
           </Properties>
         </Component>
       </SubComponents>
