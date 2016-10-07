@@ -124,7 +124,7 @@ public class ExecutionStage implements Runnable {
         this.output.add(this.input.get(2));//Encode
         this.output.add(this.input.get(3));//RD address
         this.output.add(this.input.get(6));//Memory address
-        this.output.add(value);//Data
+        this.output.add(completeBinary(value, 32));//Data
     }
 
     public void start() {
@@ -149,5 +149,13 @@ public class ExecutionStage implements Runnable {
 
     public String decimalToBinary(int pNumber) {
         return Integer.toBinaryString(pNumber);
+    }
+
+    public String completeBinary(String binary, int finalsize) {
+        String value = binary;
+        for (int i = 0; i < (finalsize - binary.length()); i++) {
+            value = "0" + value;
+        }
+        return value;
     }
 }
