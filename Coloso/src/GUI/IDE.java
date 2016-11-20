@@ -270,8 +270,8 @@ public class IDE extends javax.swing.JFrame implements Observer {
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(rightPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addComponent(jScrollPane1)
-                    .addComponent(jScrollPane3, javax.swing.GroupLayout.Alignment.TRAILING))
+                    .addComponent(jScrollPane3, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jScrollPane1))
                 .addContainerGap())
         );
 

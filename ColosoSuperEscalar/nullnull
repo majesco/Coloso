@@ -1,0 +1,3 @@
+ADD C3, C0, !45
+STOREREG C3, (10)
+XOR C4, C3, !50
