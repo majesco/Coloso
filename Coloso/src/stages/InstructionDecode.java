@@ -59,7 +59,6 @@ public class InstructionDecode implements Runnable {
             String source2 = instruction.substring(13, 17);
             output.set(6, source2);
 
-            //      if (encode.equals("0000") || encode.equals("0001") || encode.equals("0010")) {
             String immediate = instruction.substring(17, 32);
 
             String extended = "00000000000000000" + immediate;

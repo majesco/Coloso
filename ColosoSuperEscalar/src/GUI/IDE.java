@@ -34,6 +34,7 @@ public class IDE extends javax.swing.JFrame implements Observer {
     private final RegisterBank registers;
     private final DataMemory dataMem;
     private final InstructionMemory instrMem;
+    private final MainStages main;
     
     /**
      * Creates new form IDE
@@ -43,6 +44,8 @@ public class IDE extends javax.swing.JFrame implements Observer {
         registers = RegisterBank.getInstance();
         dataMem = DataMemory.getInstance();
         instrMem = InstructionMemory.getInstance();
+        main = new MainStages();
+        
         
         setTitle("Coloso IDE");
         initComponents();
@@ -114,9 +117,9 @@ public class IDE extends javax.swing.JFrame implements Observer {
         jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setPreferredSize(new java.awt.Dimension(965, 620));
+        setPreferredSize(new java.awt.Dimension(965, 670));
         setResizable(false);
-        setSize(new java.awt.Dimension(965, 620));
+        setSize(new java.awt.Dimension(965, 670));
 
         jToolBar1.setFloatable(false);
         jToolBar1.setRollover(true);
@@ -428,7 +431,7 @@ public class IDE extends javax.swing.JFrame implements Observer {
             .addGap(0, 552, Short.MAX_VALUE)
         );
 
-        jTabbedPane1.addTab("Ciclos", jPanel3);
+        jTabbedPane1.addTab("Calendarización", jPanel3);
 
         jLabel1.setText("CPI: ");
 
@@ -440,8 +443,9 @@ public class IDE extends javax.swing.JFrame implements Observer {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jToolBar1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 551, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addContainerGap()
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 533, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 198, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -454,7 +458,7 @@ public class IDE extends javax.swing.JFrame implements Observer {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jToolBar1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(12, 12, 12)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jScrollPane1)
                     .addComponent(jTabbedPane1))
@@ -462,7 +466,7 @@ public class IDE extends javax.swing.JFrame implements Observer {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
                     .addComponent(jLabel2))
-                .addContainerGap(16, Short.MAX_VALUE))
+                .addContainerGap(30, Short.MAX_VALUE))
         );
 
         pack();
