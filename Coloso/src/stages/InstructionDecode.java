@@ -41,6 +41,7 @@ public class InstructionDecode implements Runnable {
     public void run() {
 
         RegisterBank register = RegisterBank.getInstance();
+        System.out.println("Instruccion: "+this.instruction);
         String opCode = instruction.substring(0, 4);
         output.set(0, opCode);
 
@@ -72,7 +73,7 @@ public class InstructionDecode implements Runnable {
         output.set(3, destinationSource);
 
         String source1 = instruction.substring(13, 17);
-        System.out.println("substring "+source1 );
+        //System.out.println("substring "+source1 );
         String dataSource1 = register.readAddress(source1);
         output.set(4, completeBinary(dataSource1, 32));
 

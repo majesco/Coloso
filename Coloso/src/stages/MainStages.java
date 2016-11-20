@@ -14,8 +14,8 @@ public class MainStages {
 
     public static void main(String[] args) throws InterruptedException {
 
-        //  MainStages main = new MainStages();
-        //  main.start();
+          //MainStages main = new MainStages();
+          //main.start(3);
     }
 
     public void start(int cantidadInstrucciones) throws InterruptedException {
