@@ -581,22 +581,22 @@ public class IDE extends javax.swing.JFrame implements Observer {
     public void update(Observable obs, Object obj) {
         if (obs == registers) {
 
-            R0label.setText("C0  " + registers.getRegisters().get(0));
-            R1label.setText("C1  " + registers.getRegisters().get(1));
-            R2label.setText("C2  " + registers.getRegisters().get(2));
-            R3label.setText("C3  " + registers.getRegisters().get(3));
-            R4label.setText("C4  " + registers.getRegisters().get(4));
-            R5label.setText("C5  " + registers.getRegisters().get(5));
-            R6label.setText("C6  " + registers.getRegisters().get(6));
-            R7label.setText("C7  " + registers.getRegisters().get(7));
-            R8label.setText("C8  " + registers.getRegisters().get(8));
-            R9label.setText("C9  " + registers.getRegisters().get(9));
-            R10label.setText("C10  " + registers.getRegisters().get(10));
-            R11label.setText("C11  " + registers.getRegisters().get(11));
-            R12label.setText("C12  " + registers.getRegisters().get(12));
-            SPlabel.setText("SP   " + registers.getRegisters().get(13));
-            LRlabel.setText("LR  " + registers.getRegisters().get(14));
-            PClabel.setText("PC  " + registers.getRegisters().get(15));
+            R0label.setText("C0:    " + registers.getRegisters().get(0));
+            R1label.setText("C1:    " + registers.getRegisters().get(1));
+            R2label.setText("C2:    " + registers.getRegisters().get(2));
+            R3label.setText("C3:    " + registers.getRegisters().get(3));
+            R4label.setText("C4:    " + registers.getRegisters().get(4));
+            R5label.setText("C5:    " + registers.getRegisters().get(5));
+            R6label.setText("C6:    " + registers.getRegisters().get(6));
+            R7label.setText("C7:    " + registers.getRegisters().get(7));
+            R8label.setText("C8:    " + registers.getRegisters().get(8));
+            R9label.setText("C9:    " + registers.getRegisters().get(9));
+            R10label.setText("C10:  " + registers.getRegisters().get(10));
+            R11label.setText("C11:  " + registers.getRegisters().get(11));
+            R12label.setText("C12:  " + registers.getRegisters().get(12));
+            SPlabel.setText("SP:    " + registers.getRegisters().get(13));
+            LRlabel.setText("LR:    " + registers.getRegisters().get(14));
+            PClabel.setText("PC:    " + registers.getRegisters().get(15));
 
         }
     }
@@ -677,22 +677,22 @@ public class IDE extends javax.swing.JFrame implements Observer {
 
         int length = registers.getRegisters().size();
 
-        registers.writeAddress("0000", "0");
-        registers.writeAddress("0001", "0");
-        registers.writeAddress("0010", "0");
-        registers.writeAddress("0011", "0");
-        registers.writeAddress("0100", "0");
-        registers.writeAddress("0101", "0");
-        registers.writeAddress("0110", "0");
-        registers.writeAddress("0111", "0");
-        registers.writeAddress("1000", "0");
-        registers.writeAddress("1001", "0");
-        registers.writeAddress("1010", "0");
-        registers.writeAddress("1011", "0");
-        registers.writeAddress("1100", "0");
-        registers.writeAddress("1101", "0");
-        registers.writeAddress("1110", "0");
-        registers.writeAddress("1111", "0");
+        registers.writeAddress("0000", "00000000000000000000000000000000");
+        registers.writeAddress("0001", "00000000000000000000000000000000");
+        registers.writeAddress("0010", "00000000000000000000000000000000");
+        registers.writeAddress("0011", "00000000000000000000000000000000");
+        registers.writeAddress("0100", "00000000000000000000000000000000");
+        registers.writeAddress("0101", "00000000000000000000000000000000");
+        registers.writeAddress("0110", "00000000000000000000000000000000");
+        registers.writeAddress("0111", "00000000000000000000000000000000");
+        registers.writeAddress("1000", "00000000000000000000000000000000");
+        registers.writeAddress("1001", "00000000000000000000000000000000");
+        registers.writeAddress("1010", "00000000000000000000000000000000");
+        registers.writeAddress("1011", "00000000000000000000000000000000");
+        registers.writeAddress("1100", "00000000000000000000000000000000");
+        registers.writeAddress("1101", "00000000000000000000000000000000");
+        registers.writeAddress("1110", "00000000000000000000000000000000");
+        registers.writeAddress("1111", "00000000000000000000000000000000");
 
         int lengthMem = dataMem.getDataMemory().size();
 
@@ -712,21 +712,21 @@ public class IDE extends javax.swing.JFrame implements Observer {
         }
         instrMem.setPointer(0);
 
-        R0label.setText("C0  " + registers.getRegisters().get(0));
-        R1label.setText("C1  " + registers.getRegisters().get(1));
-        R2label.setText("C2  " + registers.getRegisters().get(2));
-        R3label.setText("C3  " + registers.getRegisters().get(3));
-        R4label.setText("C4  " + registers.getRegisters().get(4));
-        R5label.setText("C5  " + registers.getRegisters().get(5));
-        R6label.setText("C6  " + registers.getRegisters().get(6));
-        R7label.setText("C7  " + registers.getRegisters().get(7));
-        R8label.setText("C8  " + registers.getRegisters().get(8));
-        R9label.setText("C9  " + registers.getRegisters().get(9));
-        R10label.setText("C10  " + registers.getRegisters().get(10));
-        R11label.setText("C11  " + registers.getRegisters().get(11));
-        R12label.setText("C12  " + registers.getRegisters().get(12));
-        SPlabel.setText("SP   " + registers.getRegisters().get(13));
-        LRlabel.setText("LR  " + registers.getRegisters().get(14));
-        PClabel.setText("PC  " + registers.getRegisters().get(15));
+        R0label.setText("C0:    " + registers.getRegisters().get(0));
+        R1label.setText("C1:    " + registers.getRegisters().get(1));
+        R2label.setText("C2:    " + registers.getRegisters().get(2));
+        R3label.setText("C3:    " + registers.getRegisters().get(3));
+        R4label.setText("C4:    " + registers.getRegisters().get(4));
+        R5label.setText("C5:    " + registers.getRegisters().get(5));
+        R6label.setText("C6:    " + registers.getRegisters().get(6));
+        R7label.setText("C7:    " + registers.getRegisters().get(7));
+        R8label.setText("C8:    " + registers.getRegisters().get(8));
+        R9label.setText("C9:    " + registers.getRegisters().get(9));
+        R10label.setText("C10:  " + registers.getRegisters().get(10));
+        R11label.setText("C11:  " + registers.getRegisters().get(11));
+        R12label.setText("C12:  " + registers.getRegisters().get(12));
+        SPlabel.setText("SP:    " + registers.getRegisters().get(13));
+        LRlabel.setText("LR:    " + registers.getRegisters().get(14));
+        PClabel.setText("PC:    " + registers.getRegisters().get(15));
     }
 }
