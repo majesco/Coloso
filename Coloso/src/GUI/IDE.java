@@ -328,7 +328,6 @@ public class IDE extends javax.swing.JFrame implements Observer {
 
     private void executeMenuMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_executeMenuMouseClicked
 
-        //    registers.writePC("10101010101010");
         String code = textEditor.getText();
         resetFunction(false);
 

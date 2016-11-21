@@ -2,7 +2,6 @@ package components;
 
 import java.util.ArrayList;
 import java.util.Observable;
-import java.util.Observer;
 
 /**
  *
@@ -10,7 +9,7 @@ import java.util.Observer;
  */
 public class RegisterBank extends Observable {
 
-    private String pc;
+    private final String pc;
     private final ArrayList<String> registers;
     private static RegisterBank instance = null;
 

@@ -5,10 +5,49 @@
  */
 package stages;
 
+import components.RegisterBank;
+import java.util.ArrayList;
+
 /**
  *
  * @author jose
  */
-public class WriteBackStage {
-    
+public class WriteBackStage implements Runnable {
+
+    private Thread t;
+    private final String threadName;
+    private final ArrayList<String> input;
+    private final int cantInstructions;
+
+    public WriteBackStage(ArrayList<String> input, int pCantInst) {
+        threadName = "WriteBackStage";
+        this.input = input;
+        cantInstructions = pCantInst;
+    }
+
+    @Override
+    public void run() {
+        int loopCicle = 1;
+        while (cantInstructions >= loopCicle) {
+            RegisterBank reg = RegisterBank.getInstance();
+
+            if (this.input.get(1).compareTo("010") == 0) {
+                RegisterBank.getInstance().writeAddress("1111", this.input.get(5));
+            } else if (this.input.get(1).compareTo("011") == 0 && (this.input.get(0).compareTo("0001") == 0 || this.input.get(0).compareTo("0011") == 0 || this.input.get(0).compareTo("0101") == 0)) {
+                reg.writeAddress(this.input.get(3), this.input.get(4));
+            } else if (this.input.get(1).compareTo("000") == 0 || this.input.get(1).compareTo("001") == 0 || this.input.get(1).compareTo("100") == 0) {
+                reg.writeAddress(this.input.get(3), this.input.get(5));
+            }
+
+            loopCicle++;
+        }
+    }
+
+    public void start() {
+
+        if (t == null) {
+            t = new Thread(this, threadName);
+            t.start();
+        }
+    }
 }
