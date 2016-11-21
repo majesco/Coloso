@@ -46,7 +46,7 @@ public class IDE extends javax.swing.JFrame implements Observer {
         instrMem = InstructionMemory.getInstance();
         main = new MainStages();
         
-        
+        registers.addObserver(this);
         setTitle("Coloso IDE");
         initComponents();
     }
@@ -537,10 +537,8 @@ public class IDE extends javax.swing.JFrame implements Observer {
         }
         System.out.println("puntero " + instrMem.getPointer());
 
-        MainStages instructionExecution = new MainStages();
-
         try {
-            instructionExecution.start(cantidadInstruciones);
+            main.start(cantidadInstruciones);
         } catch (InterruptedException ex) {
             Logger.getLogger(IDE.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -566,22 +564,16 @@ public class IDE extends javax.swing.JFrame implements Observer {
                     break;
                 }
             }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(IDE.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(IDE.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(IDE.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+        } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(IDE.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
+        
+        //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new IDE().setVisible(true);
-            }
+        java.awt.EventQueue.invokeLater(() -> {
+            new IDE().setVisible(true);
         });
     }
 
@@ -732,6 +724,7 @@ public class IDE extends javax.swing.JFrame implements Observer {
         R9label.setText("C9  " + registers.getRegisters().get(9));
         R10label.setText("C10  " + registers.getRegisters().get(10));
         R11label.setText("C11  " + registers.getRegisters().get(11));
+        R12label.setText("C12  " + registers.getRegisters().get(12));
         SPlabel.setText("SP   " + registers.getRegisters().get(13));
         LRlabel.setText("LR  " + registers.getRegisters().get(14));
         PClabel.setText("PC  " + registers.getRegisters().get(15));

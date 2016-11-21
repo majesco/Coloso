@@ -13,6 +13,7 @@ public class MainStages {
     private final RegisterBank registers;
     
     private final ArrayList<Boolean> funtionalUnits;
+    private IssueStage issue;
     
     public MainStages() {
         this.instructions = InstructionMemory.getInstance();
@@ -28,9 +29,9 @@ public class MainStages {
 
     public void start(int cantidadInstrucciones) throws InterruptedException {
 
-
         System.out.println("cant "+cantidadInstrucciones);
-        
+        this.issue = new IssueStage(cantidadInstrucciones);
+        this.issue.start();
     }
 
     
