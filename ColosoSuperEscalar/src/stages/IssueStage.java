@@ -7,6 +7,8 @@ package stages;
 
 import components.InstructionMemory;
 import components.RegisterBank;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import utility.Utility;
 
 /**
@@ -31,8 +33,8 @@ public class IssueStage implements Runnable {
         System.out.println("Etapa Issue");
         InstructionMemory instructionMemory = InstructionMemory.getInstance();
         int loopCicles = 1;
-        
-        while ( cantInstructions >= loopCicles ) {
+
+        while (cantInstructions >= loopCicles) {
             System.out.println("Inicio de la etapa issue");
             RegisterBank register = RegisterBank.getInstance();
             String address = register.readAddress("1111");
@@ -46,6 +48,18 @@ public class IssueStage implements Runnable {
             int sum = number0 + number1;
             String pc = Integer.toBinaryString(sum);
             register.writeAddress("1111", Utility.completeBinary(pc, 32));
+
+            long time_start, time_end;
+            time_start = System.nanoTime();
+
+            try {
+                Thread.sleep(0, 800);
+            } catch (InterruptedException ex) {
+                Logger.getLogger(IssueStage.class.getName()).log(Level.SEVERE, null, ex);
+            }
+
+            time_end = System.nanoTime();
+            System.out.println("the task has taken " + (time_end - time_start) + " nanoseconds");
             
             loopCicles++;
         }
@@ -54,12 +68,13 @@ public class IssueStage implements Runnable {
     /**
      * Punto de entrada del thread.
      */
-    public void start () {
+    public void start() {
         if (t == null) {
             t = new Thread(this, threadName);
             t.start();
         }
     }
+
     /**
      * Se retorna el resultado de la instruccion (el fetch)
      *
