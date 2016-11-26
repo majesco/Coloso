@@ -14,6 +14,8 @@ public class MainStages {
     
     private final ArrayList<Boolean> funtionalUnits;
     private IssueStage issue;
+    private ExecutionStage execute;
+    private WriteBackStage writeback;
     
     public MainStages() {
         this.instructions = InstructionMemory.getInstance();
@@ -30,8 +32,13 @@ public class MainStages {
     public void start(int cantidadInstrucciones) throws InterruptedException {
 
         System.out.println("cant "+cantidadInstrucciones);
-        this.issue = new IssueStage(cantidadInstrucciones);
+        this.issue = new IssueStage(this, cantidadInstrucciones);
+        //this.execute = new ExecutionStage();
+        //this.writeback = new WriteBackStage(input, cantidadInstrucciones);
+        
         this.issue.start();
+        //this.execute.start();
+        //this.writeback.start();
     }
 
     
