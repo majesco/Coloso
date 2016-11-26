@@ -27,4 +27,12 @@ public class Utility {
         return value;
     }
     
+    public static String decimalToBinary(int pNumber) {
+        return Integer.toBinaryString(pNumber);
+    }
+    
+    public static int binaryToDecimal(String pBinary) {
+        return Integer.parseInt(pBinary, 2);
+    }
+    
 }
