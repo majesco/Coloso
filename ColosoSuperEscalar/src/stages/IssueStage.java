@@ -21,31 +21,29 @@ public class IssueStage implements Runnable {
     private Thread t;
     private final String threadName;
     private String instructionFetched;
-    private MainStages main;
     private final int cantInstructions;
+    private final RegisterBank register;
 
-    public IssueStage(MainStages pMain, int pCantInst) {
-        main = pMain;
+    public IssueStage(int pCantInst) {
         threadName = "IssueStage";
         cantInstructions = pCantInst;
+        register = RegisterBank.getInstance();
     }
 
     @Override
     public void run() {
 
-        System.out.println("Etapa Issue");
         InstructionMemory instructionMemory = InstructionMemory.getInstance();
         int loopCicles = 1;
 
         while (cantInstructions >= loopCicles) {
-            System.out.println("Inicio de la etapa issue");
-            RegisterBank register = RegisterBank.getInstance();
+
             String address = register.readAddress("1111");
 
             String instruction = instructionMemory.readInstruction(address);
-            instructionFetched = instruction;
+
             String pcActual = register.readAddress("1111");
-            String pc = "";
+            String pc;
 
             if (!BranchPredictor.brach(instruction)) {
                 int number0 = Integer.parseInt(address, 2);
@@ -54,26 +52,21 @@ public class IssueStage implements Runnable {
                 int sum = number0 + number1;
                 pc = Integer.toBinaryString(sum);
                 register.writeAddress("1111", Utility.completeBinary(pc, 32));
-            }
-            else {
+            } else {
                 pc = Integer.toBinaryString(BranchPredictor.getNewPC(pcActual, instruction));
                 register.writeAddress("1111", Utility.completeBinary(pc, 32));
             }
 
             try {
-                long time_start, time_end;
-                time_start = System.nanoTime();
-
-                Thread.sleep(0, 800);
-
-                time_end = System.nanoTime();
-                System.out.println("the task has taken " + (time_end - time_start) + " nanoseconds");
-
+                synchronized (this) {
+                    instructionFetched = instruction;
+                    loopCicles++;
+                    t.sleep(0, 1000);
+                    this.notifyAll();
+                }
             } catch (InterruptedException ex) {
                 Logger.getLogger(IssueStage.class.getName()).log(Level.SEVERE, null, ex);
             }
-
-            loopCicles++;
         }
     }
 
@@ -93,7 +86,6 @@ public class IssueStage implements Runnable {
      * @return
      */
     public String getInstructionFetched() {
-        System.out.println("output issue " + instructionFetched);
         return instructionFetched;
     }
 }

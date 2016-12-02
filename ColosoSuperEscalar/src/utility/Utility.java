@@ -5,6 +5,8 @@
  */
 package utility;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author jose
@@ -35,4 +37,12 @@ public class Utility {
         return Integer.parseInt(pBinary, 2);
     }
     
+    public static ArrayList<String> createList(int size) {
+        ArrayList<String> list = new ArrayList<>();
+        
+        for (int i = 0; i < size; i++) {
+            list.add("0");
+        }
+        return list;
+    }
 }
