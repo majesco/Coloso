@@ -20,8 +20,6 @@ import utility.Utility;
  */
 public class ExecutionStage implements Runnable {
 
-    private final IssueStage issue;
-    private String input;
     private ArrayList<String> output;
     private final int cantInstructions;
     private final ALU alu;
@@ -31,14 +29,17 @@ public class ExecutionStage implements Runnable {
     private final String threadName;
     private String prevInput;
     private long endTime;
+    private final int loopCicles;
+    private final String input;
 
-    public ExecutionStage(IssueStage pIssue, int pCantInst) {
+    public ExecutionStage( int pCantInst, int loopCicles, String input) {
         threadName = "ExecutionStage";
-        this.issue = pIssue;
         this.alu = new ALU();
         this.ldst = new LDST();
         this.mult = new Multiplier();
         this.cantInstructions = pCantInst;
+        this.loopCicles = loopCicles;
+        this.input = input;
     }
 
     public void start() {
@@ -118,49 +119,34 @@ public class ExecutionStage implements Runnable {
 
         ArrayList<String> decodedInst;
 
-        int loopCicles = 1;
         this.prevInput = "";
 
         long timeStart, timeEnd;
 
-        System.out.println("Inicio etapa execution");
-        //while (cantInstructions >= loopCicles) {
-//        try {
-//            synchronized (issue) {
-//                issue.wait();
-//            }
-//        } catch (InterruptedException ex) {
-//            Logger.getLogger(ExecutionStage.class.getName()).log(Level.SEVERE, null, ex);
-//        }
+        System.out.println("Inicio etapa execution " + loopCicles);
 
         timeStart = System.nanoTime();
 
-        this.input = this.issue.getInstructionFetched();
-
         if (input != null && !input.equals(prevInput)) {
-            loopCicles++;
             decodedInst = this.decodeInstruction(input);
             if (decodedInst.get(1).equals("000") && decodedInst.get(0).equals("0100")) {
                 this.mult.addInput(decodedInst);
-                System.out.println("Entro al Multiplicador");
+                System.out.println("Entro al Multiplicador " + loopCicles + " " + decodedInst);
                 this.mult.start();
             } else if (decodedInst.get(1).equals("011")) {
-                System.out.println("Entro al ST/LD");
+                System.out.println("Entro al ST/LD " + loopCicles + " " + decodedInst);
             } else {
-                System.out.println("Entro al ALU "+decodedInst);
+                System.out.println("Entro al ALU " + loopCicles + " " + decodedInst);
                 this.alu.addInput(decodedInst);
                 this.alu.start();
             }
         }
         this.prevInput = this.input;
         if (loopCicles < cantInstructions) {
-        } else {
             this.prevInput = null;
         }
         timeEnd = System.nanoTime();
         System.out.println("Execution en un tiempo de:" + (timeEnd - timeStart) + " nanosegundos");
-
-        //}
 
         this.endTime = System.nanoTime();
     }

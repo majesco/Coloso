@@ -8,6 +8,8 @@ package stages;
 import components.BranchPredictor;
 import components.InstructionMemory;
 import components.RegisterBank;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import utility.Utility;
 
 /**
@@ -38,7 +40,7 @@ public class IssueStage implements Runnable {
 
         long timeStart, timeEnd;
 
-        System.out.println("Inicio del Issue");
+        System.out.println("Inicio del Issue ");
         this.initTime = System.nanoTime();
 
         while (cantInstructions >= loopCicles) {
@@ -53,6 +55,7 @@ public class IssueStage implements Runnable {
 
             if (!BranchPredictor.brach(instruction)) {
                 int sum = Integer.parseInt(address, 2) + Integer.parseInt("1", 2);
+                System.out.println("Valor PC: "+sum);
                 pc = Integer.toBinaryString(sum);
                 register.writeAddress("1111", Utility.completeBinary(pc, 32));
             } else {
@@ -60,17 +63,18 @@ public class IssueStage implements Runnable {
                 register.writeAddress("1111", Utility.completeBinary(pc, 32));
             }
 
-            //synchronized (this) {
-            //IssueStage.busySleep(100);
             instructionFetched = instruction;
-            this.execution = new ExecutionStage(this, this.cantInstructions);
-            this.execution.start();
+            try {
+                t.sleep(0, 100);
+            } catch (InterruptedException ex) {
+                Logger.getLogger(IssueStage.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            new ExecutionStage(cantInstructions, loopCicles, instructionFetched).start();
+            
             loopCicles++;
-            // this.notifyAll();
-            //}
 
             timeEnd = System.nanoTime();
-            System.out.println("Intruccion: " + instructionFetched + " en un tiempo de:" + (timeEnd - timeStart) + " nanosegundos");
+            System.out.println("Instruccion: " + instructionFetched + " en un tiempo de:" + (timeEnd - timeStart) + " nanosegundos");
         }
         System.out.println("Fin del while issue");
     }
