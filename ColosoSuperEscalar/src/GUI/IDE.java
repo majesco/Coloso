@@ -35,17 +35,17 @@ public class IDE extends javax.swing.JFrame implements Observer {
     private final DataMemory dataMem;
     private final InstructionMemory instrMem;
     private final MainStages main;
-    
+
     /**
      * Creates new form IDE
      */
     public IDE() {
-        
+
         registers = RegisterBank.getInstance();
         dataMem = DataMemory.getInstance();
         instrMem = InstructionMemory.getInstance();
         main = new MainStages();
-        
+
         registers.addObserver(this);
         setTitle("Coloso IDE");
         initComponents();
@@ -537,11 +537,8 @@ public class IDE extends javax.swing.JFrame implements Observer {
         }
         System.out.println("puntero " + instrMem.getPointer());
 
-        try {
-            main.start(cantidadInstruciones);
-        } catch (InterruptedException ex) {
-            Logger.getLogger(IDE.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        main.start(cantidadInstruciones);
+
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
@@ -568,7 +565,7 @@ public class IDE extends javax.swing.JFrame implements Observer {
             java.util.logging.Logger.getLogger(IDE.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
-        
+
         //</editor-fold>
 
         /* Create and display the form */
@@ -672,7 +669,7 @@ public class IDE extends javax.swing.JFrame implements Observer {
         }
 
     }
-    
+
     private void resetFunction(boolean wipe) {
 
         int length = registers.getRegisters().size();

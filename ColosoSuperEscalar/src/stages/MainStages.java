@@ -8,26 +8,18 @@ import components.*;
  */
 public class MainStages {
 
-    private final InstructionMemory instructions;
-    private final RegisterBank registers;
-
     private IssueStage issue;
-    private ExecutionStage execute;
+    //private ExecutionStage execute;
 
     public MainStages() {
-        this.instructions = InstructionMemory.getInstance();
-        this.registers = RegisterBank.getInstance();
     }
 
-    public void start(int cantidadInstrucciones) throws InterruptedException {
-
-        System.out.println("cant " + cantidadInstrucciones);
+    public void start(int cantidadInstrucciones) {
         this.issue = new IssueStage(cantidadInstrucciones);
-        this.execute = new ExecutionStage(this.issue, cantidadInstrucciones);
+        //this.execute = new ExecutionStage(this.issue, cantidadInstrucciones);
 
-        
+        //this.execute.start();
         this.issue.start();
-        this.execute.start();
     }
 
 }

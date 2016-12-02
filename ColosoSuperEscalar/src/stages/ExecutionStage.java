@@ -23,21 +23,22 @@ public class ExecutionStage implements Runnable {
     private final IssueStage issue;
     private String input;
     private ArrayList<String> output;
-    private final int numInstructions;
+    private final int cantInstructions;
     private final ALU alu;
     private final LDST ldst;
     private final Multiplier mult;
     private Thread t;
     private final String threadName;
     private String prevInput;
+    private long endTime;
 
     public ExecutionStage(IssueStage pIssue, int pCantInst) {
         threadName = "ExecutionStage";
         this.issue = pIssue;
-        this.alu = new ALU(this);
+        this.alu = new ALU();
         this.ldst = new LDST();
         this.mult = new Multiplier();
-        this.numInstructions = pCantInst;
+        this.cantInstructions = pCantInst;
     }
 
     public void start() {
@@ -117,42 +118,59 @@ public class ExecutionStage implements Runnable {
 
         ArrayList<String> decodedInst;
 
-        int i = 1;
+        int loopCicles = 1;
         this.prevInput = "";
 
-        while (i <= this.numInstructions) {
+        long timeStart, timeEnd;
 
-            try {
-                synchronized (issue) {
-                    issue.wait();
+        System.out.println("Inicio etapa execution");
+        //while (cantInstructions >= loopCicles) {
+//        try {
+//            synchronized (issue) {
+//                issue.wait();
+//            }
+//        } catch (InterruptedException ex) {
+//            Logger.getLogger(ExecutionStage.class.getName()).log(Level.SEVERE, null, ex);
+//        }
 
-                    this.input = this.issue.getInstructionFetched();
+        timeStart = System.nanoTime();
 
-                    if (input != null && !input.equals(prevInput)) {
-                        i++;
-                        decodedInst = this.decodeInstruction(input);
-                        if (decodedInst.get(1).equals("000") && decodedInst.get(0).equals("0100")) {
-                            //this.mult.addInput(decodedInst);
-                            System.out.println("Entro al Multiplicador");
-                            //this.mult.start();
-                        } else if (decodedInst.get(1).equals("011")) {
-                            System.out.println("Entro al ST/LD");
-                        } else {
-                            System.out.println("Entro al ALU");
-                            this.alu.addInput(decodedInst);
-                            this.alu.start();
-                        }
-                    }
-                    this.prevInput = this.input;
-                    if(i == numInstructions){
-                        this.prevInput = "0";
-                    }
-                }
-            } catch (InterruptedException ex) {
-                Logger.getLogger(ExecutionStage.class.getName()).log(Level.SEVERE, null, ex);
+        this.input = this.issue.getInstructionFetched();
+
+        if (input != null && !input.equals(prevInput)) {
+            loopCicles++;
+            decodedInst = this.decodeInstruction(input);
+            if (decodedInst.get(1).equals("000") && decodedInst.get(0).equals("0100")) {
+                this.mult.addInput(decodedInst);
+                System.out.println("Entro al Multiplicador");
+                this.mult.start();
+            } else if (decodedInst.get(1).equals("011")) {
+                System.out.println("Entro al ST/LD");
+            } else {
+                System.out.println("Entro al ALU "+decodedInst);
+                this.alu.addInput(decodedInst);
+                this.alu.start();
             }
-
         }
+        this.prevInput = this.input;
+        if (loopCicles < cantInstructions) {
+        } else {
+            this.prevInput = null;
+        }
+        timeEnd = System.nanoTime();
+        System.out.println("Execution en un tiempo de:" + (timeEnd - timeStart) + " nanosegundos");
+
+        //}
+
+        this.endTime = System.nanoTime();
+    }
+
+    public long getEndTime() {
+        return endTime;
+    }
+
+    public void setEndTime(long endTime) {
+        this.endTime = endTime;
     }
 
 }

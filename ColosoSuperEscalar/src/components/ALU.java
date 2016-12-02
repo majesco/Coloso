@@ -8,25 +8,22 @@ package components;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import stages.ExecutionStage;
 import utility.Utility;
 
 /**
  *
  * @author jose
  */
-public class ALU {
+public class ALU implements Runnable {
 
     private Thread t;
-    //private final String threadName;
+    private final String threadName;
     private ArrayList<String> input;
     private ArrayList<String> output;
-    private final ExecutionStage execute;
     private final RegisterBank reg;
 
-    public ALU(ExecutionStage execute) {
-        //this.threadName = "ALU";
-        this.execute = execute;
+    public ALU() {
+        this.threadName = "ALU";
         this.reg = RegisterBank.getInstance();
     }
 
@@ -34,7 +31,8 @@ public class ALU {
         this.input = input;
     }
 
-    public void start() {
+    @Override
+    public void run() {
         String value = "0";
         String Cs = input.get(4);
         String Ct = input.get(6);
@@ -111,7 +109,7 @@ public class ALU {
         this.output.add(Utility.completeBinary(value, 32));//Data
 
         try {
-            Thread.sleep(0, 1000);
+            t.sleep(0, 1000);
         } catch (InterruptedException ex) {
             Logger.getLogger(ALU.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -120,7 +118,7 @@ public class ALU {
         reg.writeAddress(input.get(3), Utility.completeBinary(value, 32));
 
         try {
-            Thread.sleep(0, 1000);
+            t.sleep(0, 1000);
         } catch (InterruptedException ex) {
             Logger.getLogger(ALU.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -129,10 +127,10 @@ public class ALU {
     /**
      * Punto de entrada del thread.
      */
-//    public void start() {
-//        if (t == null) {
-//            t = new Thread(this, threadName);
-//            t.start();
-//        }
-//    }
+    public void start() {
+        if (t == null) {
+            t = new Thread(this, threadName);
+            t.start();
+       }
+    }
 }
