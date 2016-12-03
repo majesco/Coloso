@@ -47,6 +47,7 @@ public class IDE extends javax.swing.JFrame implements Observer {
         main = new MainStages();
 
         registers.addObserver(this);
+        dataMem.addObserver(this);
         setTitle("Coloso IDE");
         initComponents();
     }
@@ -87,37 +88,36 @@ public class IDE extends javax.swing.JFrame implements Observer {
         LRlabel = new javax.swing.JLabel();
         PClabel = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
-        jLabel17 = new javax.swing.JLabel();
-        jLabel18 = new javax.swing.JLabel();
-        jLabel19 = new javax.swing.JLabel();
-        jLabel20 = new javax.swing.JLabel();
-        jLabel21 = new javax.swing.JLabel();
-        jLabel22 = new javax.swing.JLabel();
-        jLabel23 = new javax.swing.JLabel();
-        jLabel24 = new javax.swing.JLabel();
-        jLabel25 = new javax.swing.JLabel();
-        jLabel26 = new javax.swing.JLabel();
-        jLabel27 = new javax.swing.JLabel();
-        jLabel28 = new javax.swing.JLabel();
-        jLabel29 = new javax.swing.JLabel();
-        jLabel30 = new javax.swing.JLabel();
-        jLabel31 = new javax.swing.JLabel();
-        jLabel32 = new javax.swing.JLabel();
-        jLabel33 = new javax.swing.JLabel();
-        jLabel34 = new javax.swing.JLabel();
-        jLabel35 = new javax.swing.JLabel();
-        jLabel36 = new javax.swing.JLabel();
-        jLabel37 = new javax.swing.JLabel();
-        jLabel38 = new javax.swing.JLabel();
-        jLabel39 = new javax.swing.JLabel();
-        jLabel40 = new javax.swing.JLabel();
-        jLabel41 = new javax.swing.JLabel();
+        Mem00 = new javax.swing.JLabel();
+        Mem04 = new javax.swing.JLabel();
+        Mem08 = new javax.swing.JLabel();
+        Mem0C = new javax.swing.JLabel();
+        Mem10 = new javax.swing.JLabel();
+        Mem14 = new javax.swing.JLabel();
+        Mem18 = new javax.swing.JLabel();
+        Mem1C = new javax.swing.JLabel();
+        Mem20 = new javax.swing.JLabel();
+        Mem24 = new javax.swing.JLabel();
+        Mem28 = new javax.swing.JLabel();
+        Mem2C = new javax.swing.JLabel();
+        Mem30 = new javax.swing.JLabel();
+        Mem34 = new javax.swing.JLabel();
+        Mem38 = new javax.swing.JLabel();
+        Mem3C = new javax.swing.JLabel();
+        Mem40 = new javax.swing.JLabel();
+        Mem44 = new javax.swing.JLabel();
+        Mem48 = new javax.swing.JLabel();
+        Mem4C = new javax.swing.JLabel();
+        Mem50 = new javax.swing.JLabel();
+        Mem54 = new javax.swing.JLabel();
+        Mem58 = new javax.swing.JLabel();
+        Mem5C = new javax.swing.JLabel();
+        Mem60 = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setPreferredSize(new java.awt.Dimension(965, 670));
         setResizable(false);
         setSize(new java.awt.Dimension(965, 670));
 
@@ -278,55 +278,55 @@ public class IDE extends javax.swing.JFrame implements Observer {
 
         jTabbedPane1.addTab("Registros", jPanel1);
 
-        jLabel17.setText("0x00000000");
+        Mem00.setText("0x00000000");
 
-        jLabel18.setText("0x00000004");
+        Mem04.setText("0x00000004");
 
-        jLabel19.setText("0x00000008");
+        Mem08.setText("0x00000008");
 
-        jLabel20.setText("0x0000000C");
+        Mem0C.setText("0x0000000C");
 
-        jLabel21.setText("0x00000010");
+        Mem10.setText("0x00000010");
 
-        jLabel22.setText("0x00000014");
+        Mem14.setText("0x00000014");
 
-        jLabel23.setText("0x00000018");
+        Mem18.setText("0x00000018");
 
-        jLabel24.setText("0x0000001C");
+        Mem1C.setText("0x0000001C");
 
-        jLabel25.setText("0x00000020");
+        Mem20.setText("0x00000020");
 
-        jLabel26.setText("0x00000024");
+        Mem24.setText("0x00000024");
 
-        jLabel27.setText("0x00000028");
+        Mem28.setText("0x00000028");
 
-        jLabel28.setText("0x0000002C");
+        Mem2C.setText("0x0000002C");
 
-        jLabel29.setText("0x00000030");
+        Mem30.setText("0x00000030");
 
-        jLabel30.setText("0x00000034");
+        Mem34.setText("0x00000034");
 
-        jLabel31.setText("0x00000038");
+        Mem38.setText("0x00000038");
 
-        jLabel32.setText("0x0000003C");
+        Mem3C.setText("0x0000003C");
 
-        jLabel33.setText("0x00000040");
+        Mem40.setText("0x00000040");
 
-        jLabel34.setText("0x00000044");
+        Mem44.setText("0x00000044");
 
-        jLabel35.setText("0x00000048");
+        Mem48.setText("0x00000048");
 
-        jLabel36.setText("0x0000004C");
+        Mem4C.setText("0x0000004C");
 
-        jLabel37.setText("0x00000050");
+        Mem50.setText("0x00000050");
 
-        jLabel38.setText("0x00000054");
+        Mem54.setText("0x00000054");
 
-        jLabel39.setText("0x00000058");
+        Mem58.setText("0x00000058");
 
-        jLabel40.setText("0x0000005C");
+        Mem5C.setText("0x0000005C");
 
-        jLabel41.setText("0x00000060");
+        Mem60.setText("0x00000060");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -335,86 +335,86 @@ public class IDE extends javax.swing.JFrame implements Observer {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel17, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel18, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel19, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel20, javax.swing.GroupLayout.DEFAULT_SIZE, 367, Short.MAX_VALUE)
-                    .addComponent(jLabel21, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel22, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel23, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel24, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel25, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel26, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel27, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel28, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel29, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel30, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel31, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel32, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel33, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel34, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel35, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel36, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel37, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel38, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel39, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel40, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel41, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(Mem00, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(Mem04, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(Mem08, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(Mem0C, javax.swing.GroupLayout.DEFAULT_SIZE, 367, Short.MAX_VALUE)
+                    .addComponent(Mem10, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(Mem14, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(Mem18, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(Mem1C, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(Mem20, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(Mem24, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(Mem28, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(Mem2C, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(Mem30, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(Mem34, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(Mem38, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(Mem3C, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(Mem40, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(Mem44, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(Mem48, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(Mem4C, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(Mem50, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(Mem54, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(Mem58, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(Mem5C, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(Mem60, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel17)
+                .addComponent(Mem00)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel18)
+                .addComponent(Mem04)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel19)
+                .addComponent(Mem08)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel20)
+                .addComponent(Mem0C)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel21)
+                .addComponent(Mem10)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel22)
+                .addComponent(Mem14)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel23)
+                .addComponent(Mem18)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel24)
+                .addComponent(Mem1C)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel25)
+                .addComponent(Mem20)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel26)
+                .addComponent(Mem24)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel27)
+                .addComponent(Mem28)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel28)
+                .addComponent(Mem2C)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel29)
+                .addComponent(Mem30)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel30)
+                .addComponent(Mem34)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel31)
+                .addComponent(Mem38)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel32)
+                .addComponent(Mem3C)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel33)
+                .addComponent(Mem40)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel34)
+                .addComponent(Mem44)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel35)
+                .addComponent(Mem48)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel36)
+                .addComponent(Mem4C)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel37)
+                .addComponent(Mem50)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel38)
+                .addComponent(Mem54)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel39)
+                .addComponent(Mem58)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel40)
+                .addComponent(Mem5C)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel41)
+                .addComponent(Mem60)
                 .addContainerGap(46, Short.MAX_VALUE))
         );
 
@@ -594,12 +594,64 @@ public class IDE extends javax.swing.JFrame implements Observer {
             SPlabel.setText("SP:    " + registers.getRegisters().get(13));
             LRlabel.setText("LR:    " + registers.getRegisters().get(14));
             PClabel.setText("PC:    " + registers.getRegisters().get(15));
+            
+            Mem00.setText("0x00000000: "+dataMem.getDataMemory().get(0));
+            Mem04.setText("0x00000004: "+dataMem.getDataMemory().get(4));
+            Mem08.setText("0x00000008: "+dataMem.getDataMemory().get(8));
+            Mem0C.setText("0x0000000C: "+dataMem.getDataMemory().get(12));
+            Mem10.setText("0x00000010: "+dataMem.getDataMemory().get(16));
+            Mem14.setText("0x00000014: "+dataMem.getDataMemory().get(20));
+            Mem18.setText("0x00000018: "+dataMem.getDataMemory().get(24));
+            Mem1C.setText("0x0000001C: "+dataMem.getDataMemory().get(28));
+            Mem20.setText("0x00000020: "+dataMem.getDataMemory().get(32));
+            Mem24.setText("0x00000024: "+dataMem.getDataMemory().get(36));
+            Mem28.setText("0x00000028: "+dataMem.getDataMemory().get(40));
+            Mem2C.setText("0x0000002C: "+dataMem.getDataMemory().get(44));
+            Mem30.setText("0x00000030: "+dataMem.getDataMemory().get(48));
+            Mem34.setText("0x00000034: "+dataMem.getDataMemory().get(52));
+            Mem38.setText("0x00000038: "+dataMem.getDataMemory().get(56));
+            Mem3C.setText("0x0000003C: "+dataMem.getDataMemory().get(60));
+            Mem40.setText("0x00000040: "+dataMem.getDataMemory().get(64));
+            Mem44.setText("0x00000044: "+dataMem.getDataMemory().get(68));
+            Mem48.setText("0x00000048: "+dataMem.getDataMemory().get(72));
+            Mem4C.setText("0x0000004C: "+dataMem.getDataMemory().get(76));
+            Mem50.setText("0x00000050: "+dataMem.getDataMemory().get(80));
+            Mem54.setText("0x00000054: "+dataMem.getDataMemory().get(84));
+            Mem58.setText("0x00000058: "+dataMem.getDataMemory().get(88));
+            Mem5C.setText("0x0000005C: "+dataMem.getDataMemory().get(92));
+            Mem60.setText("0x00000060: "+dataMem.getDataMemory().get(96));
+            
 
         }
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel LRlabel;
+    private javax.swing.JLabel Mem00;
+    private javax.swing.JLabel Mem04;
+    private javax.swing.JLabel Mem08;
+    private javax.swing.JLabel Mem0C;
+    private javax.swing.JLabel Mem10;
+    private javax.swing.JLabel Mem14;
+    private javax.swing.JLabel Mem18;
+    private javax.swing.JLabel Mem1C;
+    private javax.swing.JLabel Mem20;
+    private javax.swing.JLabel Mem24;
+    private javax.swing.JLabel Mem28;
+    private javax.swing.JLabel Mem2C;
+    private javax.swing.JLabel Mem30;
+    private javax.swing.JLabel Mem34;
+    private javax.swing.JLabel Mem38;
+    private javax.swing.JLabel Mem3C;
+    private javax.swing.JLabel Mem40;
+    private javax.swing.JLabel Mem44;
+    private javax.swing.JLabel Mem48;
+    private javax.swing.JLabel Mem4C;
+    private javax.swing.JLabel Mem50;
+    private javax.swing.JLabel Mem54;
+    private javax.swing.JLabel Mem58;
+    private javax.swing.JLabel Mem5C;
+    private javax.swing.JLabel Mem60;
     private javax.swing.JLabel PClabel;
     private javax.swing.JLabel R0label;
     private javax.swing.JLabel R10label;
@@ -621,32 +673,7 @@ public class IDE extends javax.swing.JFrame implements Observer {
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel17;
-    private javax.swing.JLabel jLabel18;
-    private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel20;
-    private javax.swing.JLabel jLabel21;
-    private javax.swing.JLabel jLabel22;
-    private javax.swing.JLabel jLabel23;
-    private javax.swing.JLabel jLabel24;
-    private javax.swing.JLabel jLabel25;
-    private javax.swing.JLabel jLabel26;
-    private javax.swing.JLabel jLabel27;
-    private javax.swing.JLabel jLabel28;
-    private javax.swing.JLabel jLabel29;
-    private javax.swing.JLabel jLabel30;
-    private javax.swing.JLabel jLabel31;
-    private javax.swing.JLabel jLabel32;
-    private javax.swing.JLabel jLabel33;
-    private javax.swing.JLabel jLabel34;
-    private javax.swing.JLabel jLabel35;
-    private javax.swing.JLabel jLabel36;
-    private javax.swing.JLabel jLabel37;
-    private javax.swing.JLabel jLabel38;
-    private javax.swing.JLabel jLabel39;
-    private javax.swing.JLabel jLabel40;
-    private javax.swing.JLabel jLabel41;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;

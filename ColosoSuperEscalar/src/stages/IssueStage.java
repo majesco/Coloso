@@ -8,6 +8,7 @@ package stages;
 import components.BranchPredictor;
 import components.InstructionMemory;
 import components.RegisterBank;
+import java.util.Observable;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import utility.Utility;
@@ -16,7 +17,7 @@ import utility.Utility;
  *
  * @author jose
  */
-public class IssueStage implements Runnable {
+public class IssueStage extends Observable implements Runnable {
 
     private Thread t;
     private final String threadName;
@@ -24,7 +25,7 @@ public class IssueStage implements Runnable {
     private final int cantInstructions;
     private final RegisterBank register;
     private long initTime;
-    private ExecutionStage execution;
+    private long time;
 
     public IssueStage(int pCantInst) {
         threadName = "IssueStage";
@@ -37,15 +38,13 @@ public class IssueStage implements Runnable {
 
         InstructionMemory instructionMemory = InstructionMemory.getInstance();
         int loopCicles = 1;
-
-        long timeStart, timeEnd;
+        ExecutionStage exe = null;
 
         System.out.println("Inicio del Issue ");
         this.initTime = System.nanoTime();
 
         while (cantInstructions >= loopCicles) {
 
-            timeStart = System.nanoTime();
             String address = register.readAddress("1111");
 
             String instruction = instructionMemory.readInstruction(address);
@@ -55,7 +54,6 @@ public class IssueStage implements Runnable {
 
             if (!BranchPredictor.brach(instruction)) {
                 int sum = Integer.parseInt(address, 2) + Integer.parseInt("1", 2);
-                System.out.println("Valor PC: "+sum);
                 pc = Integer.toBinaryString(sum);
                 register.writeAddress("1111", Utility.completeBinary(pc, 32));
             } else {
@@ -65,18 +63,34 @@ public class IssueStage implements Runnable {
 
             instructionFetched = instruction;
             try {
-                t.sleep(0, 100);
+                t.sleep(0, 1000);
             } catch (InterruptedException ex) {
                 Logger.getLogger(IssueStage.class.getName()).log(Level.SEVERE, null, ex);
             }
-            new ExecutionStage(cantInstructions, loopCicles, instructionFetched).start();
-            
+            exe = new ExecutionStage(cantInstructions, loopCicles, instructionFetched);
+            exe.start();
+
             loopCicles++;
 
-            timeEnd = System.nanoTime();
-            System.out.println("Instruccion: " + instructionFetched + " en un tiempo de:" + (timeEnd - timeStart) + " nanosegundos");
         }
-        System.out.println("Fin del while issue");
+        if (cantInstructions < loopCicles && exe != null) {
+            try {
+                t.sleep(0, 3000);
+            } catch (InterruptedException ex) {
+                Logger.getLogger(IssueStage.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            this.setTime(exe.getEndTime() - this.initTime);
+        }
+    }
+
+    public long getTime() {
+        return time;
+    }
+
+    public void setTime(long time) {
+        this.time = time / 3000;
+        setChanged();
+        notifyObservers();
     }
 
     /**
@@ -97,21 +111,4 @@ public class IssueStage implements Runnable {
     public String getInstructionFetched() {
         return instructionFetched;
     }
-
-    public long getInitTime() {
-        return initTime;
-    }
-
-    public void setInitTime(long initTime) {
-        this.initTime = initTime;
-    }
-
-    public static void busySleep(long nanos) {
-        long elapsed;
-        final long startTime = System.nanoTime();
-        do {
-            elapsed = System.nanoTime() - startTime;
-        } while (elapsed < nanos);
-    }
-
 }
