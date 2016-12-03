@@ -1,46 +1,32 @@
 package stages;
 
-import components.*;
-import java.util.ArrayList;
+import java.util.Observable;
+import java.util.Observer;
 
 /**
  *
  * @author nicolasjimenez
  */
-public class MainStages {
+public class MainStages implements Observer {
 
-    private final InstructionMemory instructions;
-    private final RegisterBank registers;
-    
-    private final ArrayList<Boolean> funtionalUnits;
     private IssueStage issue;
-    private ExecutionStage execute;
-    private WriteBackStage writeback;
-    
+    private long time;
+    //private ExecutionStage execute;
+
     public MainStages() {
-        this.instructions = InstructionMemory.getInstance();
-        this.registers = RegisterBank.getInstance();
-        this.funtionalUnits = new ArrayList<>();
-        
-        for (int i = 0; i < 4; i++) {
-            this.funtionalUnits.add(Boolean.FALSE);
-            System.out.println("Valor X: "+Boolean.FALSE);
-        }
     }
 
-
-    public void start(int cantidadInstrucciones) throws InterruptedException {
-
-        System.out.println("cant "+cantidadInstrucciones);
-        this.issue = new IssueStage(this, cantidadInstrucciones);
-        //this.execute = new ExecutionStage();
-        //this.writeback = new WriteBackStage(input, cantidadInstrucciones);
-        
+    public void start(int cantidadInstrucciones) {
+        this.issue = new IssueStage(cantidadInstrucciones);
+        this.issue.addObserver(this);
         this.issue.start();
-        //this.execute.start();
-        //this.writeback.start();
+
     }
 
-    
+    @Override
+    public void update(Observable o, Object o1) {
+        this.time = issue.getTime();
+        System.out.println("Tiempo de ejecucion: " + this.time);
+    }
 
 }

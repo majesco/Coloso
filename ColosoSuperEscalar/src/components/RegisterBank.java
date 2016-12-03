@@ -23,7 +23,7 @@ public class RegisterBank extends Observable {
         registers = new ArrayList();
 
         for (int i = 0; i < 16; i++) {
-            registers.add("0");
+            registers.add(utility.Utility.completeBinaryInstruction("0", 32));
         }
 
         setChanged();

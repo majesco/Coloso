@@ -8,6 +8,8 @@ package stages;
 import components.BranchPredictor;
 import components.InstructionMemory;
 import components.RegisterBank;
+import components.Schedule;
+import java.util.Observable;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import utility.Utility;
@@ -16,65 +18,83 @@ import utility.Utility;
  *
  * @author jose
  */
-public class IssueStage implements Runnable {
+public class IssueStage extends Observable implements Runnable {
 
     private Thread t;
     private final String threadName;
     private String instructionFetched;
-    private MainStages main;
     private final int cantInstructions;
+    private final RegisterBank register;
+    private long initTime;
+    private long time;
+    private final Schedule schedule;
 
-    public IssueStage(MainStages pMain, int pCantInst) {
-        main = pMain;
+    public IssueStage(int pCantInst) {
         threadName = "IssueStage";
         cantInstructions = pCantInst;
+        register = RegisterBank.getInstance();
+        schedule = Schedule.getInstance(cantInstructions);
     }
 
     @Override
     public void run() {
 
-        System.out.println("Etapa Issue");
         InstructionMemory instructionMemory = InstructionMemory.getInstance();
         int loopCicles = 1;
+        ExecutionStage exe = null;
+
+        System.out.println("Inicio del Issue ");
+        this.initTime = System.nanoTime();
 
         while (cantInstructions >= loopCicles) {
-            System.out.println("Inicio de la etapa issue");
-            RegisterBank register = RegisterBank.getInstance();
+
             String address = register.readAddress("1111");
 
             String instruction = instructionMemory.readInstruction(address);
-            instructionFetched = instruction;
+
             String pcActual = register.readAddress("1111");
-            String pc = "";
+            String pc;
 
             if (!BranchPredictor.brach(instruction)) {
-                int number0 = Integer.parseInt(address, 2);
-                int number1 = Integer.parseInt("1", 2);
-
-                int sum = number0 + number1;
+                int sum = Integer.parseInt(address, 2) + Integer.parseInt("1", 2);
                 pc = Integer.toBinaryString(sum);
                 register.writeAddress("1111", Utility.completeBinary(pc, 32));
-            }
-            else {
+            } else {
                 pc = Integer.toBinaryString(BranchPredictor.getNewPC(pcActual, instruction));
                 register.writeAddress("1111", Utility.completeBinary(pc, 32));
             }
 
+            instructionFetched = instruction;
+            this.schedule.insertSheduleCicle(loopCicles, 0, loopCicles);
             try {
-                long time_start, time_end;
-                time_start = System.nanoTime();
-
-                Thread.sleep(0, 800);
-
-                time_end = System.nanoTime();
-                System.out.println("the task has taken " + (time_end - time_start) + " nanoseconds");
-
+                t.sleep(0, 1000);
             } catch (InterruptedException ex) {
                 Logger.getLogger(IssueStage.class.getName()).log(Level.SEVERE, null, ex);
             }
-
+            exe = new ExecutionStage(cantInstructions, loopCicles, instructionFetched);
+            exe.start();
+            
             loopCicles++;
+
         }
+        if (cantInstructions < loopCicles && exe != null) {
+            try {
+                t.sleep(0, 3000);
+            } catch (InterruptedException ex) {
+                Logger.getLogger(IssueStage.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            this.setTime(exe.getEndTime() - this.initTime);
+        }
+    }
+
+    public long getTime() {
+        return time;
+    }
+
+    public void setTime(long time) {
+        this.time = time / 3000;
+        setChanged();
+        notifyObservers();
     }
 
     /**
@@ -93,7 +113,6 @@ public class IssueStage implements Runnable {
      * @return
      */
     public String getInstructionFetched() {
-        System.out.println("output issue " + instructionFetched);
         return instructionFetched;
     }
 }

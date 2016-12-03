@@ -1,36 +1,38 @@
 package components;
 
 import java.util.ArrayList;
+import java.util.Observable;
+import utility.Utility;
 
 /**
  *
  * @author nicolasjimenez
  */
-public class DataMemory {
+public class DataMemory extends Observable {
 
     private final ArrayList<String> dataMemory;
     private static DataMemory instance = null;
 
-    
     public DataMemory() {
 
         dataMemory = new ArrayList();
-                for (int i = 0; i < 1000; i++) {
-            dataMemory.add("0");
+        for (int i = 0; i < 1000; i++) {
+            dataMemory.add(Utility.completeBinaryInstruction("0", 32));
         }
     }
-    
+
     /**
      * Singleton
-     * @return 
+     *
+     * @return
      */
-   public static DataMemory getInstance() {
-      if(instance == null) {
-         instance = new DataMemory();
-      }
-      return instance;
-   }
-   
+    public static DataMemory getInstance() {
+        if (instance == null) {
+            instance = new DataMemory();
+        }
+        return instance;
+    }
+
     /**
      * Reads from the data memory Return the content of the memory address
      *
@@ -55,10 +57,12 @@ public class DataMemory {
      */
     public void writeMemory(String address, String data) {
 
-
-
         int index = binaryToDecimal(address);
         dataMemory.set(index, data);
+
+        setChanged();
+        notifyObservers();
+
     }
 
     /**
@@ -68,7 +72,7 @@ public class DataMemory {
      * @return
      */
     private int binaryToDecimal(String number) {
-        
+
         int n = Integer.parseInt(number, 2);
         return n;
     }
@@ -76,6 +80,5 @@ public class DataMemory {
     public ArrayList<String> getDataMemory() {
         return dataMemory;
     }
-    
-    
+
 }
