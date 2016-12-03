@@ -627,33 +627,32 @@ public class IDE extends javax.swing.JFrame implements Observer {
             SPlabel.setText("SP:    " + registers.getRegisters().get(13));
             LRlabel.setText("LR:    " + registers.getRegisters().get(14));
             PClabel.setText("PC:    " + registers.getRegisters().get(15));
-            
-            Mem00.setText("0x00000000: "+dataMem.getDataMemory().get(0));
-            Mem04.setText("0x00000004: "+dataMem.getDataMemory().get(4));
-            Mem08.setText("0x00000008: "+dataMem.getDataMemory().get(8));
-            Mem0C.setText("0x0000000C: "+dataMem.getDataMemory().get(12));
-            Mem10.setText("0x00000010: "+dataMem.getDataMemory().get(16));
-            Mem14.setText("0x00000014: "+dataMem.getDataMemory().get(20));
-            Mem18.setText("0x00000018: "+dataMem.getDataMemory().get(24));
-            Mem1C.setText("0x0000001C: "+dataMem.getDataMemory().get(28));
-            Mem20.setText("0x00000020: "+dataMem.getDataMemory().get(32));
-            Mem24.setText("0x00000024: "+dataMem.getDataMemory().get(36));
-            Mem28.setText("0x00000028: "+dataMem.getDataMemory().get(40));
-            Mem2C.setText("0x0000002C: "+dataMem.getDataMemory().get(44));
-            Mem30.setText("0x00000030: "+dataMem.getDataMemory().get(48));
-            Mem34.setText("0x00000034: "+dataMem.getDataMemory().get(52));
-            Mem38.setText("0x00000038: "+dataMem.getDataMemory().get(56));
-            Mem3C.setText("0x0000003C: "+dataMem.getDataMemory().get(60));
-            Mem40.setText("0x00000040: "+dataMem.getDataMemory().get(64));
-            Mem44.setText("0x00000044: "+dataMem.getDataMemory().get(68));
-            Mem48.setText("0x00000048: "+dataMem.getDataMemory().get(72));
-            Mem4C.setText("0x0000004C: "+dataMem.getDataMemory().get(76));
-            Mem50.setText("0x00000050: "+dataMem.getDataMemory().get(80));
-            Mem54.setText("0x00000054: "+dataMem.getDataMemory().get(84));
-            Mem58.setText("0x00000058: "+dataMem.getDataMemory().get(88));
-            Mem5C.setText("0x0000005C: "+dataMem.getDataMemory().get(92));
-            Mem60.setText("0x00000060: "+dataMem.getDataMemory().get(96));
-            
+
+            Mem00.setText("0x00000000: " + dataMem.getDataMemory().get(0));
+            Mem04.setText("0x00000004: " + dataMem.getDataMemory().get(4));
+            Mem08.setText("0x00000008: " + dataMem.getDataMemory().get(8));
+            Mem0C.setText("0x0000000C: " + dataMem.getDataMemory().get(12));
+            Mem10.setText("0x00000010: " + dataMem.getDataMemory().get(16));
+            Mem14.setText("0x00000014: " + dataMem.getDataMemory().get(20));
+            Mem18.setText("0x00000018: " + dataMem.getDataMemory().get(24));
+            Mem1C.setText("0x0000001C: " + dataMem.getDataMemory().get(28));
+            Mem20.setText("0x00000020: " + dataMem.getDataMemory().get(32));
+            Mem24.setText("0x00000024: " + dataMem.getDataMemory().get(36));
+            Mem28.setText("0x00000028: " + dataMem.getDataMemory().get(40));
+            Mem2C.setText("0x0000002C: " + dataMem.getDataMemory().get(44));
+            Mem30.setText("0x00000030: " + dataMem.getDataMemory().get(48));
+            Mem34.setText("0x00000034: " + dataMem.getDataMemory().get(52));
+            Mem38.setText("0x00000038: " + dataMem.getDataMemory().get(56));
+            Mem3C.setText("0x0000003C: " + dataMem.getDataMemory().get(60));
+            Mem40.setText("0x00000040: " + dataMem.getDataMemory().get(64));
+            Mem44.setText("0x00000044: " + dataMem.getDataMemory().get(68));
+            Mem48.setText("0x00000048: " + dataMem.getDataMemory().get(72));
+            Mem4C.setText("0x0000004C: " + dataMem.getDataMemory().get(76));
+            Mem50.setText("0x00000050: " + dataMem.getDataMemory().get(80));
+            Mem54.setText("0x00000054: " + dataMem.getDataMemory().get(84));
+            Mem58.setText("0x00000058: " + dataMem.getDataMemory().get(88));
+            Mem5C.setText("0x0000005C: " + dataMem.getDataMemory().get(92));
+            Mem60.setText("0x00000060: " + dataMem.getDataMemory().get(96));
 
         }
     }

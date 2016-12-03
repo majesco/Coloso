@@ -34,7 +34,7 @@ public class Schedule extends Observable {
     }
     
     public void insertSheduleCicle(int cicle, int stage, int instruction) {
-        this.schedule[instruction][cicle] = cicle;
+        this.schedule[instruction-1][stage] = cicle;
     }
     
 }
