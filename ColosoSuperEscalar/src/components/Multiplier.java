@@ -14,7 +14,7 @@ import utility.Utility;
  *
  * @author jose
  */
-public class Multiplier {
+public class Multiplier implements Runnable {
 
     private Thread t;
     private final String threadName;
@@ -34,15 +34,15 @@ public class Multiplier {
     /**
      * Punto de entrada del thread.
      */
-//    public void start() {
-//        if (t == null) {
-//            t = new Thread(this, threadName);
-//            t.start();
-//        }
-//    }
-
-//    @Override
     public void start() {
+        if (t == null) {
+            t = new Thread(this, threadName);
+            t.start();
+        }
+    }
+
+    @Override
+    public void run() {
         String value = "0";
         String Cs = input.get(4);
         String Ct = input.get(6);

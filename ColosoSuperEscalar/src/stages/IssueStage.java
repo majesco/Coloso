@@ -8,6 +8,7 @@ package stages;
 import components.BranchPredictor;
 import components.InstructionMemory;
 import components.RegisterBank;
+import components.Schedule;
 import java.util.Observable;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -26,11 +27,13 @@ public class IssueStage extends Observable implements Runnable {
     private final RegisterBank register;
     private long initTime;
     private long time;
+    private final Schedule schedule;
 
     public IssueStage(int pCantInst) {
         threadName = "IssueStage";
         cantInstructions = pCantInst;
         register = RegisterBank.getInstance();
+        schedule = Schedule.getInstance(cantInstructions);
     }
 
     @Override
@@ -62,6 +65,7 @@ public class IssueStage extends Observable implements Runnable {
             }
 
             instructionFetched = instruction;
+            this.schedule.insertSheduleCicle(loopCicles, 0, loopCicles);
             try {
                 t.sleep(0, 1000);
             } catch (InterruptedException ex) {
@@ -69,7 +73,7 @@ public class IssueStage extends Observable implements Runnable {
             }
             exe = new ExecutionStage(cantInstructions, loopCicles, instructionFetched);
             exe.start();
-
+            
             loopCicles++;
 
         }

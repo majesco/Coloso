@@ -9,6 +9,7 @@ import components.ALU;
 import components.LDST;
 import components.Multiplier;
 import components.RegisterBank;
+import components.Schedule;
 import java.util.ArrayList;
 import utility.Utility;
 
@@ -27,6 +28,7 @@ public class ExecutionStage implements Runnable {
     private final int loopCicles;
     private final String input;
     private final int cantInstructions;
+    private final Schedule schedule;
 
     public ExecutionStage(int cantIntructions, int loopCicles, String input) {
         threadName = "ExecutionStage";
@@ -34,7 +36,8 @@ public class ExecutionStage implements Runnable {
         this.ldst = new LDST();
         this.mult = new Multiplier();
         this.loopCicles = loopCicles;
-        this.cantInstructions = cantIntructions;
+        this.cantInstructions = cantIntructions;        
+        this.schedule = Schedule.getInstance(cantInstructions);
         this.input = input;
     }
 
@@ -110,19 +113,24 @@ public class ExecutionStage implements Runnable {
 
         decodedInst = this.decodeInstruction(input);
         if (decodedInst.get(1).equals("000") && decodedInst.get(0).equals("0100")) {
+            this.schedule.insertSheduleCicle(loopCicles+4, 2, loopCicles);
             this.mult.addInput(decodedInst);
             System.out.println("Entro al Multiplicador");
             this.mult.start();
         } else if (decodedInst.get(1).equals("011")) {
+            this.schedule.insertSheduleCicle(loopCicles+3, 2, loopCicles);
             this.ldst.addInput(decodedInst);
             this.ldst.start();
             System.out.println("Entro al ST/LD");
         } else {
             System.out.println("Entro al ALU");
+            this.schedule.insertSheduleCicle(loopCicles+2, 2, loopCicles);
             this.alu.addInput(decodedInst);
             this.alu.start();
         }
 
+        this.schedule.insertSheduleCicle(loopCicles+1, 1, loopCicles);
+        
         if (loopCicles == cantInstructions) {
             this.endTime = System.nanoTime() + 10000;
         }
